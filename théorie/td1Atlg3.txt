@@ -17,6 +17,12 @@ Question 2:
 
 Question 3 :
 1)Il s’attend à avoir le this(0,0) à la première instruction dans le constructeur.
+2)
+-Si on supprime le constructeur sans paramètre de la classe point, il y a une erreur de compilation car on utilise ce constructeur dans la main pour créer un point.
+-si on supprime tous les constructeurs, on a pas d’erreur car il y a un constructeur par défaut mais qui ne fait rien.
+-il affiche (0.0, 0.0) (2.0, 2.0)
+3) il affiche (10.0, 10.0) (12.0, 12.0)
+
 
 
 
