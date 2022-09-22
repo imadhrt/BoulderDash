@@ -1,0 +1,22 @@
+                                           Cours atelier logiciel 3
+
+Question 1:
+1) le programme affiche la cordonnée du point (2.0, 2.0).
+2)l’erreur du compilateur rapporte qu’on ne peut pas avoir plusieurs classes publiques au seins d’un même fichier. 
+C’est à dire que le nom de la classe doit être obligatoirement le même que le nom du fichier. Prenons l’exemple de la classe Point, le nom du fichier est point.java. Tandis que si on a 2 classe on seins d’un même fichier, il s’attend avoir un nom de fichier mais lequel étant donnée qu’il y a 2 classes donc il y a une erreur.
+3) C’est le même principe que l’exo2, c’est qu’il s’attend à avoir exactement une classe public        avec le même nom du fichier.
+
+
+
+
+Question 2:
+
+1)On ne peut pas accèder à l’attribut ‘x ‘étant donné qu’il est privé donc pour avoir accès à cet attribut, on doit créer un accesseur(getter).
+2)elle va afficher dans la console « méthode move (Int, Int).
+3)quand essaye d’ajouter la méthode booléen move alors il y a une erreur car on ne peut peut pas avoir 2 méthode avec le même nom et même paramètre.
+
+Question 3 :
+1)Il s’attend à avoir le this(0,0) à la première instruction dans le constructeur.
+
+
+
