@@ -1,6 +1,6 @@
 package g58132.atlg3.ascii.Model;
 
-public abstract  class ColoredShape {
+public abstract  class ColoredShape implements Shape {
     private char color;
 
     public ColoredShape(char color){
