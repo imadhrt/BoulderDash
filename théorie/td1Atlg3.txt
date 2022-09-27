@@ -3,7 +3,8 @@
 Question 1:
 1) le programme affiche la cordonnée du point (0.0,0.0) (2.0, 2.0).
 2)l’erreur du compilateur rapporte qu’on ne peut pas avoir plusieurs classes publiques au seins d’un même fichier. 
-C’est à dire que le nom de la classe doit être obligatoirement le même que le nom du fichier. Prenons l’exemple de la classe Point, le nom du fichier est point.java. Tandis que si on a 2 classe on seins d’un même fichier, il s’attend avoir un nom de fichier mais lequel étant donnée qu’il y a 2 classes donc il y a une erreur.
+C’est à dire que le nom de la classe doit être obligatoirement le même que le nom du fichier. Prenons l’exemple de la classe Point, le nom du fichier est point.java. 
+Tandis que si on a 2 classes on seins d’un même fichier, il s’attend avoir un nom de fichier mais lequel étant donnée qu’il y a 2 classes donc il y a une erreur.
 3) C’est le même principe que l’exo2, c’est qu’il s’attend à avoir exactement une classe public avec le même nom du fichier.
 
 
@@ -43,11 +44,55 @@ circle:[(2.0,5.0),5.0]
 circle:[(0.0,0.0),5.0]
 
 2)
--Il y a 2 instances de la classe Point (p et p2) et 1 instance de la classe circle(c).
+a)Il y a 2 instances de la classe Point (p et p2) et 1 instance de la classe circle(c).
+b)p et p2 ont la même référence et c'est p2 qui a pris la référence de p lors de sa création(c.getCenter)
+  ce qui fait qu'il pointe vers la même adresse mémoire.
+c)L'instance qui référe l'attribut center est le p.
+
+3)
+Circle : [(0.0, 0.0), 5.0]
+Circle : [(0.0, 0.0), 5.0]
+Circle : [(-2.0, -5.0), 5.0]
+
+4)
+Circle : [(0.0, 0.0), 5.0]
+Circle : [(0.0, 0.0), 5.0]
+Circle : [(0.0, 0.0), 5.0]
+
+5) 
+a)Il y a 3 instances de Point et 1 instance de Circle.
+b)p et p2 sont deux objets différents( qui ne pointe pas vers la même adresse)
+  car p a été instancié par new Point() et p2 a été instancié par new Point(center.getX(),center.getY()).
+  Donc p et p2 ont la même valeur mais pas le même enplacement mémoire.
+c)  il référe à un nouvelle instance de Point avec les valeurs du point p grâce à cette instruction :this.center = new Point(center.getX(), center.getY()).
 
 
+Question 6:
 
+1)
+Rectangle : [(0.0, 0.0), (5.0, 3.0)]
+perimeter: 16.0
+Rectangle : [(2.0, 5.0), (7.0, 8.0)]
+perimeter: 16.0
 
+2)regarder le fichier uml sur git
 
+3)
+a)L'invariant n'est pas respecté car bl est modifié avec une cordonnée(10,10) et 
+  que ur garde la même cordonnée(5,3) donc après ce mouvement la condition du constructeur
+  n'est pas respecté mais étant donnée qu'on fait plus appel au constructeur alors 
+  il ne lance pas d'éxception.Pour contrer cela,nous devons rajouter une condition qui 
+  lance une exception dans le move() ou une copie défensive.
 
+b)
+Rectangle : [(0.0, 0.0), (5.0, 3.0)]
+perimeter: 16.0
+Rectangle : [(12.0, 15.0), (7.0, 8.0)]
+perimeter: -24.0
+
+c)
+Rectangle : [(0.0, 0.0), (5.0, 3.0)]
+perimeter: 16.0
+Rectangle : [(2.0, 5.0), (7.0, 8.0)]
+perimeter: 16.0
 
