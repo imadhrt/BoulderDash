@@ -2,30 +2,42 @@ package g58132.atlg3.ascii.Model;
 
 public class Rectangle  extends ColoredShape{
     private  Point upperLeft;
-    private double widht;
+    private double width;
     private double height;
 
-
-    public Rectangle(Point upperLeft, double widht, double height,char color) {
+    /**
+     * Constructor of the rectangle
+     *
+     * Allows to initialize the attributes to values.
+     *
+     * @param upperLeft is a point upper left
+     * @param width is a width rectangle
+     * @param height is a height rectangle
+     * @param color is a color re ctangle
+     */
+    public Rectangle(Point upperLeft, double width, double height,char color) {
         super(color);
         this.upperLeft = upperLeft;
-        this.widht = widht;
+        this.width = width;
         this.height = height;
     }
 
 
     @Override
     public boolean inside(Point p) {
-        return false;
+
+        return p.getX()< upperLeft.getX()+width &&
+                p.getY()< upperLeft.getY()-height ;
     }
 
     @Override
     public void move(double dx, double dy) {
+        upperLeft.move(dx,dy);
 
     }
 
     @Override
     public char getColor() {
-        return 0;
+        return getColor();
     }
 }
