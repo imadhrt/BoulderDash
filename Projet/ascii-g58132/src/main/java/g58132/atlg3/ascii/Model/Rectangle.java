@@ -23,21 +23,17 @@ public class Rectangle  extends ColoredShape{
     }
 
 
-    @Override
+
     public boolean inside(Point p) {
 
-        return p.getX()< upperLeft.getX()+width &&
-                p.getY()< upperLeft.getY()-height ;
+        return p.getX()<= upperLeft.getX()&& p.getY()<= upperLeft.getY() && p.getX()< upperLeft.getX()+height &&
+                p.getY()< upperLeft.getY()-width ;
     }
 
-    @Override
+
     public void move(double dx, double dy) {
         upperLeft.move(dx,dy);
 
     }
 
-    @Override
-    public char getColor() {
-        return getColor();
-    }
 }

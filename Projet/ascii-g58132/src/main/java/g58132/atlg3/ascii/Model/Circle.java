@@ -1,5 +1,6 @@
 package g58132.atlg3.ascii.Model;
 
+
 public class Circle  extends ColoredShape{
 
 private Point center;
@@ -21,21 +22,14 @@ public  Circle(Point center, double radius, char color){
     this.radius=radius;
 
 }
-    @Override
+
     public boolean inside(Point p) {
 
-    return Math.sqrt(  Math.pow(p.getX()-center.getX(),2)  +   Math.pow(p.getY()-center.getY(),2) ) < radius;
+    return center.distanceTo(p)< radius;
     }
-
-    @Override
     public void move(double dx, double dy) {
     center.move(dx,dy);
 
     }
 
-    @Override
-    public char getColor() {
-
-    return this.getColor();
-    }
 }
