@@ -33,7 +33,7 @@ public abstract class ColoredShape implements Shape {
      * @param color is a color of the shape
      */
 
-    private void setColor(char color) {
+    public void setColor(char color) {
         this.color = color;
     }
 }

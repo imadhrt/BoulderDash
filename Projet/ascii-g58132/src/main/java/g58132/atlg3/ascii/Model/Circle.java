@@ -25,11 +25,13 @@ public  Circle(Point center, double radius, char color){
 
     public boolean inside(Point p) {
 
-    return center.distanceTo(p)< radius;
+    return center.distanceTo(p)<=radius;
     }
     public void move(double dx, double dy) {
     center.move(dx,dy);
 
     }
+
+
 
 }

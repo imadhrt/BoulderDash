@@ -26,14 +26,18 @@ public class Rectangle  extends ColoredShape{
 
     public boolean inside(Point p) {
 
-        return p.getX()<= upperLeft.getX()&& p.getY()<= upperLeft.getY() && p.getX()< upperLeft.getX()+height &&
-                p.getY()< upperLeft.getY()-width ;
+        return p.getX()>= upperLeft.getX() &&
+                p.getY()<= upperLeft.getY() &&
+                p.getX()<= upperLeft.getX()+height &&
+                p.getY()>= upperLeft.getY()-width ;
     }
 
 
     public void move(double dx, double dy) {
         upperLeft.move(dx,dy);
 
+
     }
+
 
 }

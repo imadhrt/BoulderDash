@@ -26,4 +26,6 @@ public interface Shape{
      * @return the character of the display
      */
     public char getColor();
+
+    public void setColor(char color);
 }
