@@ -67,6 +67,7 @@ public class Point{
     }
 
     /**
+     *Distance to
      *
      * Allows to have the distance between the current point and new point.
      * @param point is a new point.

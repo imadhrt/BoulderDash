@@ -38,7 +38,8 @@ Avec final,on ne peut pas créer de sous classe.
 oui,car tous les classe hérite de classe Object.
 ### 2)
 oui,,car tous les classe hérite de classe Object.
-### 3)oui on peut l'ajouter.Cette méthode est définie dans la classe Object.
+### 3)
+oui on peut l'ajouter.Cette méthode est définie dans la classe Object.
 Tout les classes qu'on crée ou qui sont crée hérite automatiquement de la classe Objet.
 
 liste de méthode Objet:
@@ -75,12 +76,14 @@ constructor of C
 constructor of A
 constructor of B
 
-### 3)oui,  c'est la même.
+### 3)
+oui, c'est la même.
 
-### 4)Il a un constructeur(Object()).
+### 4)
+Il a un constructeur(Object()).
 
 
-## Question 5)
+## Question 5:
 
 ### 1)
 (0.0, 0.0) - not pinned
@@ -92,14 +95,15 @@ La méthode executé est celle de Point car la variable est déclarer de type  P
 ### 3)
 
 
-## Question 6)
+
+## Question 6:
 
 (1.0, 1.0)
 (3.0, 5.0) - FF0000FF
 (2.0, 2.0) - not pinned
 
 
-## Question 7)
+## Question 7:
 
 ### 1)
 Il y a une erreur

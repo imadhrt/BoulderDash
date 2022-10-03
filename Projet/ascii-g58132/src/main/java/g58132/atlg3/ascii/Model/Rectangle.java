@@ -13,7 +13,7 @@ public class Rectangle  extends ColoredShape{
      * @param upperLeft is a point upper left
      * @param width is a width rectangle
      * @param height is a height rectangle
-     * @param color is a color re ctangle
+     * @param color is a color rectangle
      */
     public Rectangle(Point upperLeft, double width, double height,char color) {
         super(color);
