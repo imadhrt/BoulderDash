@@ -57,5 +57,7 @@ public class AsciiPaint {
         drawing.addShape(new Square(new Point(x,y),side,color));
     }
 
+
+
 }
 
