@@ -10,7 +10,9 @@ import g58132.atlg3.ascii.Model.Point;
 public class AsciiView {
 private AsciiPaint paint;
 
-
+    public AsciiView(AsciiPaint paint) {
+        this.paint = paint;
+    }
 
     /**
      * Display help

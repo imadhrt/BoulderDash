@@ -57,7 +57,13 @@ public class AsciiPaint {
         drawing.addShape(new Square(new Point(x,y),side,color));
     }
 
-
-
+    /**
+     * Drawing
+     *
+     * @return a drawing
+     */
+    public Drawing getDrawing() {
+        return drawing;
+    }
 }
 

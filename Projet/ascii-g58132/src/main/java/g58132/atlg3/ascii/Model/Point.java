@@ -75,7 +75,7 @@ public class Point{
      * @return the distance between two points.
      */
     public double distanceTo(Point point ){
-        return Math.sqrt((Math.pow(point.getX()-getX(),2))+ (Math.pow(point.getY()-getY(),2)));
+        return Math.sqrt((Math.pow(point.x-x,2))+ (Math.pow(point.y-y,2)));
 //        return Math.sqrt(((point.getX()-getX())*(point.getX()-getX())) + ((point.getY()-getY())*(point.getY()-getY())));
     }
 }

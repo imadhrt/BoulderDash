@@ -26,11 +26,11 @@ private final AsciiView view;
     public static void main(String[] args) {
         /** Faire une boucle tant que le joueur veut continuer,je demande lequel il veut (add show,help) si il veut
          * arreter console exit  **/
+        AsciiPaint paint=new AsciiPaint(50,50);
+        AsciiView view=new AsciiView(paint);
 
-         AsciiPaint game=new AsciiPaint();
-        Application controller=new Application(game,new AsciiView());
+        Application controller=new Application(paint,view);
         controller.start();
-
 
 
 
@@ -69,7 +69,7 @@ private final AsciiView view;
                 paint.newRectangle(Integer.parseInt(tab[2]),Integer.parseInt(tab[3]),Integer.parseInt(tab[4]),Integer.parseInt(tab[5]),tab[6].charAt(0));
             }
             else if(command.equals("show")){
-                view.display(new Drawing());
+                view.display(paint.getDrawing());
 
             }
             else{
