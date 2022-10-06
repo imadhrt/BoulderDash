@@ -93,6 +93,14 @@ Il a un constructeur(Object()).
 La méthode executé est celle de Point car la variable est déclarer de type  Point, même si  l'instanciation est PinnablePoint.
 
 ### 3)
+Dans un override c'est à dire quand on doit réecrire une méthode ,alors on ne
+peut pas laner des nouvelles exception.
+
+### 4)
+non,il n' a pas d'erreur car c'est une runtimeException.Cela signifie que la condition n'est jamais vérifié.
+
+### 9)
+  Elle fait appel à la méthode move(...) de la classe parent.
 
 
 
