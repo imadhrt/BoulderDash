@@ -8,6 +8,12 @@ import g58132.atlg3.ascii.Model.Point;
  **/
 public class AsciiView {
 private Drawing draws;
+    /**
+     * Constructor of AsciiView without parameter
+     *
+     * Allows to initialise the attributes to values.
+     * @param draws is a drawing
+     */
     public AsciiView(Drawing draws) {
         this.draws=draws;
     }

@@ -10,7 +10,13 @@ public class Application {
 
 private final AsciiPaint paint;
 private final AsciiView view;
-
+    /**
+     * Constructor of Application
+     *
+     * Allows to initialise the attributes to values.
+     * @param paint is a view of the shape
+     * @param view is a view
+     */
     public Application(AsciiPaint paint, AsciiView view) {
         this.paint = paint;
         this.view = view;
