@@ -28,8 +28,7 @@ private final AsciiView view;
          * arreter console exit  **/
 
          AsciiPaint game=new AsciiPaint();
-         Drawing drawing=new Drawing();
-        Application controller=new Application(game,new AsciiView(drawing));
+        Application controller=new Application(game,new AsciiView());
         controller.start();
 
 

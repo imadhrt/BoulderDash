@@ -1,0 +1,16 @@
+TD3:Java FX
+
+Question 1:
+
+1) en fonction des valeurs(Scene(root,height,width)) qu'on entre en paramètre,on aggrandis ou rétrécis la fenètre.
+2)il supprime le header(on y trouve le titre,fermeture d'onglet,minimiser la page,maximiser la page)
+   les enumération:
+-StageStyle.DECORATED
+-StageStyle.UNDECORATED
+-StageStyle.TRANSPARENT
+-StageStyle.UTILITY
+
+3)
+set
+
+  

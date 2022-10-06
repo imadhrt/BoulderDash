@@ -1,5 +1,6 @@
 package g58132.atlg3.ascii.View;
 
+import g58132.atlg3.ascii.Model.AsciiPaint;
 import g58132.atlg3.ascii.Model.Drawing;
 import g58132.atlg3.ascii.Model.Point;
 
@@ -7,16 +8,9 @@ import g58132.atlg3.ascii.Model.Point;
  * displayHelp(),display(Drawing d),asAsci() pas dans asciiPaint....
  **/
 public class AsciiView {
-private Drawing draws;
-    /**
-     * Constructor of AsciiView without parameter
-     *
-     * Allows to initialise the attributes to values.
-     * @param draws is a drawing
-     */
-    public AsciiView(Drawing draws) {
-        this.draws=draws;
-    }
+private AsciiPaint paint;
+
+
 
     /**
      * Display help
