@@ -19,7 +19,7 @@ setRight() --> place le composant Text tout en haut à droite de l'écran.
 
 Question 2:
 1) Les trois checkBox sont différenciés pas leur emplacement à l'écran(checkbox1--> centré à gauche,...).
-2) L'effet est que l'affichage de checkBox1 et checkBox3 ne sera pas centrer .
+2) L'effet est que l'affichage de checkBox1 et checkBox3 ne seront pas centrer sur la page .
 
 
 
