@@ -8,8 +8,8 @@ import java.util.Scanner;
 
 public class Application {
 
-private final AsciiPaint paint;
-private final AsciiView view;
+private  AsciiPaint paint;
+private  AsciiView view;
     /**
      * Constructor of Application
      *
@@ -26,7 +26,7 @@ private final AsciiView view;
     public static void main(String[] args) {
         /** Faire une boucle tant que le joueur veut continuer,je demande lequel il veut (add show,help) si il veut
          * arreter console exit  **/
-        AsciiPaint paint=new AsciiPaint(50,50);
+        AsciiPaint paint=new AsciiPaint(10,10);
         AsciiView view=new AsciiView(paint);
 
         Application controller=new Application(paint,view);
@@ -48,7 +48,7 @@ private final AsciiView view;
 
         while(!isGameOver){
             command=keyboard.nextLine().toLowerCase();
-            String [] tab=command.split(" ");
+            String [] tab=command.split("\\s+");
 
 
              if (command.equals("exit")) {

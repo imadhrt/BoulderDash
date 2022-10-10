@@ -26,7 +26,7 @@ public class Point{
      * @param p is a point
      */
     public Point (Point p){
-        this(p.getX(),p.getY());
+        this(p.x,p.y);
 
     }
 

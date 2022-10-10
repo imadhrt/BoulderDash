@@ -40,6 +40,7 @@ private AsciiPaint paint;
 
             }
             System.out.println();
+
         }
 
 
