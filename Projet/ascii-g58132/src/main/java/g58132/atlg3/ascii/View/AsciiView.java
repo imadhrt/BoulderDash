@@ -37,6 +37,10 @@ private AsciiPaint paint;
                     System.out.print(drawing.getShapeAt(pointShape).getColor());
                 }
 
+                else{
+                    System.out.print(" ");
+                }
+
 
             }
             System.out.println();

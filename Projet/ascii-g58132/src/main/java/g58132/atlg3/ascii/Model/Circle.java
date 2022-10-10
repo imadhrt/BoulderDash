@@ -18,12 +18,18 @@ private double radius;
 
 public  Circle(Point center, double radius, char color){
     super(color);
+    if(radius<=0){
+        throw  new IllegalArgumentException("the radius is not negative and null");
+    }
     this.center=center;
     this.radius=radius;
 
 }
 
     public boolean inside(Point p) {
+        if(radius<=0){
+            throw  new IllegalArgumentException("the radius is not negative and null");
+        }
 
     return center.distanceTo(p)<=radius;
     }

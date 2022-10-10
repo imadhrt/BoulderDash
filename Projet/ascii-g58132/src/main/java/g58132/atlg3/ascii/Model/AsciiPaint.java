@@ -58,9 +58,11 @@ public class AsciiPaint {
     }
 
     /**
-     * Drawing
+     * Accessor of the drawing
      *
-     * @return a drawing
+     * Allows access to the value of the drawing attribute.
+     *
+     * @return the value of the drawing
      */
     public Drawing getDrawing() {
         return drawing;
