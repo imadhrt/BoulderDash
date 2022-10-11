@@ -46,8 +46,9 @@ private  AsciiView view;
 
 
         while(!isGameOver){
+            view.enterCommand();
             command=keyboard.nextLine().toLowerCase();
-            String [] tab=command.split("\\s+");
+            String [] tab=command.trim().split("\\s+");
 
 
              if (command.equals("exit")) {

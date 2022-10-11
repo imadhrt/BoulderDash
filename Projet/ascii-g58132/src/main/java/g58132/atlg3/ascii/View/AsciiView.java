@@ -22,6 +22,9 @@ private AsciiPaint paint;
         System.out.println("The command entered is not valid!!!" +
                          "the commands used are ADD, SHOW,HELP, EXIT and with their parameters");
     }
+    public void enterCommand(){
+        System.out.println("Enter the command:");
+    }
 
 
     /**
