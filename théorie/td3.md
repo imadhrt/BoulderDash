@@ -27,7 +27,8 @@ Question 3:
 1)
 Le texte entrée par l'utilisateur est caché par des points noirs. Donc on ne voit pas ce qui est écrit.
 
-2)Il ne se passe rien quand on clique sur ENTER.
+2)Quand on clique sur Enter,on ne peut plus modifier le texte entrée au clavier et on a message qui dit que "le nom de l'utilisateur est sauvegarder
+et que vous ne pouvez pas changer ça".
 
 
 Question 4:
@@ -36,9 +37,26 @@ texte entrée dans le textArea sur la console et si on appuye plusieur fois sur 
 
 Question 5:
 1)la méthode getChilderen() retourne ObservableList<Node>.
-L'interet d'un tel type de retour est de recuperer noeud enfant de la 
-classe parent pour conserver les données préférées et permet d'avoir
-des fonctionnalités propre au noeud.
+L'interet d'un tel type de retour est de recuperer les composants enfants de la classe parent et l'ajouter.
+
+Question 6:
+1)ligne 14: VBox root = new VBox(10);
+
+2) root.getChildren().addAll(checkBox1,checkBox2,checkBox3);
+
+3)je ne sais pas répondre à cette question car je n'ai pas compris.
+
+
+
+
+
+Question 7:
+1)Ils sont réparti en fonction des lignes et colonnes que vous donnez en param
+ pour placer le composant dans la cellule.
+
+2)Il affiche le password bien au centre entre le coté gauche vide et le début de l'entrée de texte(le rectangle pour écrire du texte). 
+
+3)Le changement que j'ai remarquer est que le imput password à la même longeur et largeur que le imput user name or email.
 
 
 
