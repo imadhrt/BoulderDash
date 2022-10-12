@@ -23,6 +23,25 @@ Question 2:
 
 
 
+Question 3:
+1)
+Le texte entrée par l'utilisateur est caché par des points noirs. Donc on ne voit pas ce qui est écrit.
+
+2)Il ne se passe rien quand on clique sur ENTER.
+
+
+Question 4:
+1)Lors du pression sur le bouton de cet ecran, on remarque que sa affiche le 
+texte entrée dans le textArea sur la console et si on appuye plusieur fois sur le boutton, ça ajoute à la suite de l'autre en passant à la ligne(C'est comme un append() en JS).
+
+Question 5:
+1)la méthode getChilderen() retourne ObservableList<Node>.
+L'interet d'un tel type de retour est de recuperer noeud enfant de la 
+classe parent pour conserver les données préférées et permet d'avoir
+des fonctionnalités propre au noeud.
+
+
+
 
 
 
