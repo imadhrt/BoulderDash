@@ -1,6 +1,6 @@
 package g58132.atlg3.ascii.Model;
 
-public class Rectangle  extends ColoredShape{
+public class Rectangle  extends ColoredShape {
     private  Point upperLeft;
     private double width;
     private double height;
@@ -17,6 +17,7 @@ public class Rectangle  extends ColoredShape{
      */
     public Rectangle(Point upperLeft, double width, double height,char color) {
         super(color);
+        // vérifier width et height
         this.upperLeft = upperLeft;
         this.width = width;
         this.height = height;
@@ -35,8 +36,6 @@ public class Rectangle  extends ColoredShape{
 
     public void move(double dx, double dy) {
         upperLeft.move(dx,dy);
-
-
     }
 
 

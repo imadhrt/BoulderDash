@@ -38,7 +38,7 @@ public class Point{
      * @return the value of the x attribute.
      */
     public double getX() {
-        return this.x;
+        return x;
     }
 
     /**
@@ -49,7 +49,7 @@ public class Point{
      * @return the value of the y attribute.
      */
     public double getY(){
-        return this.y;
+        return y;
     }
 
     /**
@@ -61,9 +61,8 @@ public class Point{
      * @param dy is a new ordinate
      */
     public void move(double dx,double dy){
-        this.x+=dx;
-        this.y+=dy;
-
+        x+=dx;
+        y+=dy;
     }
 
     /**
@@ -75,8 +74,8 @@ public class Point{
      * @return the distance between two points.
      */
     public double distanceTo(Point point ){
-        return Math.sqrt((Math.pow(point.x-x,2))+ (Math.pow(point.y-y,2)));
-//        return Math.sqrt(((point.getX()-getX())*(point.getX()-getX())) + ((point.getY()-getY())*(point.getY()-getY())));
+        return Math.sqrt((Math.pow(point.x - this.x, 2))
+                + (Math.pow(point.y - this.y, 2)));
     }
 }
 

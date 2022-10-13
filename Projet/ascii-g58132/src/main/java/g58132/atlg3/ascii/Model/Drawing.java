@@ -5,6 +5,7 @@ import java.util.List;
 
 
 public class Drawing {
+    private static final int DEFAULT_HEIGHT = 50;
     private List<Shape> shapes;
     private int height;
     private int width;
@@ -15,7 +16,7 @@ public class Drawing {
      */
 
     public Drawing(){
-        this(50,50);
+        this(50, DEFAULT_HEIGHT);
 
     }
     /**
@@ -35,7 +36,7 @@ public class Drawing {
      * Add a shape in the list
      * @param shape is  a shape(rectangle,square,circle)
      */
-    public void addShape(Shape shape){
+    void addShape(Shape shape){
         shapes.add(shape);
 
     }
@@ -49,7 +50,7 @@ public class Drawing {
      * @return the shape if it finds at the given position otherwise null
      */
     public Shape getShapeAt(Point p){
-        for (int i=0;i<shapes.size();i++){
+        for (int i=0;i<shapes.size();i++){ // foreach
             if(shapes.get(i).inside(p)){
                 return shapes.get(i);
 
@@ -66,7 +67,7 @@ public class Drawing {
      * @return the value of the height
      */
     public int getHeight(){
-        return this.height;
+        return height;
     }
     /**
      * Accessor of the width
@@ -76,6 +77,6 @@ public class Drawing {
      * @return the value of the width
      */
     public int getWidth(){
-        return this.width;
+        return width;
     }
 }

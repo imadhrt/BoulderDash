@@ -30,6 +30,7 @@ public class AsciiPaint {
      * @param color is a color circle
      */
     public void newCircle(int x,int y,double radius,char color){
+        // vérfiier radius >0 lancer iae
        drawing.addShape(new Circle(new Point(x,y),radius,color));
     }
     /**
