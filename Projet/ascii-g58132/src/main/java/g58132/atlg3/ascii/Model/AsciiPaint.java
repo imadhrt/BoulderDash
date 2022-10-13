@@ -30,7 +30,9 @@ public class AsciiPaint {
      * @param color is a color circle
      */
     public void newCircle(int x,int y,double radius,char color){
-        // vérfiier radius >0 lancer iae
+        if (radius <= 0) {
+            throw new IllegalArgumentException("the radius is not negative and null: " + radius);
+        }
        drawing.addShape(new Circle(new Point(x,y),radius,color));
     }
     /**
@@ -43,6 +45,9 @@ public class AsciiPaint {
      * @param color is a color rectangle
      */
     public void newRectangle(int x,int y,double width,double height,char color){
+//        if(width<=0 || height<=0){
+//            throw new  IllegalArgumentException("the height mustn't be negative or null");
+//        }
         drawing.addShape(new Rectangle(new Point(x,y),width,height,color));
     }
     /**
@@ -55,6 +60,9 @@ public class AsciiPaint {
      */
 
     public void newSquare(int x,int y,double side,char color){
+//        if(side<=0 ){
+//            throw new  IllegalArgumentException("the height mustn't be negative or null");
+//        }
         drawing.addShape(new Square(new Point(x,y),side,color));
     }
 
