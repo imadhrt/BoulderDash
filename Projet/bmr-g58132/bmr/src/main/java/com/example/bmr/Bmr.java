@@ -6,6 +6,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
@@ -29,10 +30,18 @@ public class Bmr extends Application {
     public void start(Stage primaryStage) {
         primaryStage.setTitle("Calcul du BMR");
 //       BorderPane borderPane=new BorderPane();
-        VBox vbox=new VBox(5);
+        VBox vbox=new VBox();
         HBox hbox=new HBox();
         GridPane gridPane = new GridPane();
         GridPane gridPane2=new GridPane();
+       vbox.setPadding(new Insets(10));
+        gridPane.setHgap(10);
+        gridPane.setVgap(5);
+
+
+//        gridPane2.setHgap(10);
+//        gridPane2.setVgap(5);
+
 //       borderPane.getChildren().add(vbox);
        vbox.getChildren().add(hbox);
        hbox.getChildren().addAll(gridPane,gridPane2);
@@ -40,7 +49,7 @@ public class Bmr extends Application {
 
 
 
-        Scene scene = new Scene(vbox, 500, 250);
+        Scene scene = new Scene(vbox, 600, 300);
 //        Scene scene2=new Scene(root2,50,50);
         Label label = new Label("Donnée");
         label.setUnderline(true);
@@ -68,6 +77,7 @@ public class Bmr extends Application {
         Label labelSexe=new Label("Sexe");
         RadioButton radioButtonHomme=new RadioButton("Homme");
         radioButtonHomme.setToggleGroup(group);
+        radioButtonHomme.setSelected(true);
 
         RadioButton radioButtonFemme=new RadioButton("Femme");
         radioButtonFemme.setToggleGroup(group);
@@ -86,10 +96,11 @@ public class Bmr extends Application {
 
         Button bouton=new Button("Calcul du BMR");
         bouton.setPrefWidth(2000);
+
          vbox.getChildren().add(bouton);
 
         Button bouton2=new Button("Clear");
-        bouton.setPrefWidth(2000);
+        bouton2.setPrefWidth(2000);
         vbox.getChildren().add(bouton2);
 
         Label labelResult = new Label("Résultat");
@@ -168,9 +179,12 @@ public class Bmr extends Application {
                 }
                 calories=bmr*a;
 
-
+                textFieldBmr.setStyle("-fx-text-fill: Black;");
+                textFieldCal.setStyle("-fx-text-fill: Black;");
                 textFieldBmr.setText(""+bmr);
                 textFieldCal.setText(""+calories);
+
+
 
 
 
@@ -182,11 +196,12 @@ public class Bmr extends Application {
         bouton2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                textField.setText("");
-                textField2.setText("");
-                textField3.setText("");
-                textFieldBmr.setText("");
-                textFieldCal.setText("");
+                textField.clear();
+                textField2.clear();
+                textField3.clear();
+                textFieldBmr.clear();
+                textFieldCal.clear();
+                cb.getSelectionModel().clearSelection();
             }
         });
 
