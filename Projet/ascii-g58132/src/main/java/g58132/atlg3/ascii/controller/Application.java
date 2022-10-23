@@ -46,6 +46,7 @@ private  AsciiView view;
 
 
         while(!isGameOver){
+            try{
             view.enterCommand();
             command=keyboard.nextLine().toLowerCase();
             String [] tab=command.trim().split("\\s+");
@@ -56,14 +57,10 @@ private  AsciiView view;
             }
             else if (tab.length==6&&tab[0].equals("add")&&tab[1].equals("circle")&& tab[2].matches("-?\\d+")
            && tab[3].matches("-?\\d+") && tab[4].matches("-?\\d+") && tab[5].matches("[a-z]")) {
-                 try {
+
 
                      paint.newCircle(Integer.parseInt(tab[2]), Integer.parseInt(tab[3]), Integer.parseInt(tab[4]), tab[5].charAt(0));
-                 }catch(Exception e){
-                     System.out.println("the radius is not negative and null");
-                     view.displayHelp();
 
-                 }
                  }
             else if (tab.length == 6 && tab[0].equals("add") && tab[1].equals("square") && tab[2].matches("-?\\d+")
                          && tab[3].matches("-?\\d+") && tab[4].matches("-?\\d+") && tab[5].matches("[a-z]")) {
@@ -82,6 +79,11 @@ private  AsciiView view;
                 view.displayHelp();
 
             }
+        }catch(IllegalArgumentException e){
+           e.getMessage();
+           view.displayHelp();
+
+       }
 
         }
         view.displayEnd();

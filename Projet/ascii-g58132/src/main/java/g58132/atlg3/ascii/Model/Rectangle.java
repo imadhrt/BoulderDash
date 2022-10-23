@@ -18,6 +18,9 @@ public class Rectangle  extends ColoredShape {
     public Rectangle(Point upperLeft, double width, double height,char color) {
         super(color);
         // vérifier width et height
+        if(width<=0 || height<=0){
+            throw new  IllegalArgumentException("the height mustn't be negative or null");
+        }
         this.upperLeft = upperLeft;
         this.width = width;
         this.height = height;

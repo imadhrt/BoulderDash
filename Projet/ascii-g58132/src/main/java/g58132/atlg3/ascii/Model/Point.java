@@ -13,6 +13,9 @@ public class Point{
      * @param y is the ordinate of a point
      */
     public Point(double x, double y) {
+        if(x<0 || y<0) {
+            throw new IllegalArgumentException("The point must not be negative");
+        }
         this.x = x;
         this.y = y;
     }
