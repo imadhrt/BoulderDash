@@ -9,6 +9,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
@@ -132,21 +133,21 @@ public class Bmr extends Application {
                     textFieldBmr.setStyle("-fx-text-fill: red;");
                     textFieldCal.setText("FAILED");
                     textFieldCal.setStyle("-fx-text-fill: red;");
-                    return;
+
 
                 }
-//                if(Double.parseDouble(poid)==0 ||Double.parseDouble(taille)==0
-//                ||Integer.parseInt(age)==0){
-//
-//                    Alert alert = new Alert(Alert.AlertType.ERROR);
-//                    alert.setTitle("Error d'encodage");
-//                    alert.setHeaderText("Valeur de la taille erronée");
-//                    alert.setContentText("Vous devez encoder une valeur strictement supérieur à zéro.");
-//                    alert.show();
-//
-//
-//                    return;
-//                }
+                if((poid.length()!=0&&Integer.parseInt(poid)<=0) ||(taille.length()!=0&&Integer.parseInt(taille)<=0)
+                ||(age.length()!=0&&Integer.parseInt(age)<=0)){
+
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Error d'encodage");
+                    alert.setHeaderText("Valeur de la taille erronée");
+                    alert.setContentText("Vous devez encoder une valeur strictement supérieur à zéro.");
+                    alert.showAndWait();
+
+
+                    return;
+                }
                 double bmr=0;
                 double calories=0;
                 if (group.getSelectedToggle() != null) {
