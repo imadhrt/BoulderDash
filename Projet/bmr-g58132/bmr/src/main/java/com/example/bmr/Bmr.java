@@ -7,6 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
@@ -82,10 +83,17 @@ public class Bmr extends Application {
 
         RadioButton radioButtonFemme=new RadioButton("Femme");
         radioButtonFemme.setToggleGroup(group);
+        HBox boutSexe=new HBox();
+        gridPane.add(boutSexe,4,8);
+        boutSexe.getChildren().addAll(radioButtonHomme,radioButtonFemme);
 
         gridPane.add(labelSexe,0,8);
-        gridPane.add(radioButtonHomme,4,8);
-        gridPane.add(radioButtonFemme,5,8);
+        for (Node n : gridPane.getChildren()) {
+            GridPane.setMargin(n, new Insets(10));
+        }
+
+//        gridPane.add(radioButtonHomme,4,8);
+//        gridPane.add(radioButtonFemme,5,8);
 
         ChoiceBox cb = new ChoiceBox(FXCollections.observableArrayList(
                 "Sédentaire", "Peu actif", "Actif","Fort actif","Extrêmement actif")
@@ -98,11 +106,16 @@ public class Bmr extends Application {
         Button bouton=new Button("Calcul du BMR");
         bouton.setPrefWidth(2000);
 
-         vbox.getChildren().add(bouton);
+
 
         Button bouton2=new Button("Clear");
         bouton2.setPrefWidth(2000);
-        vbox.getChildren().add(bouton2);
+        vbox.getChildren().addAll(bouton,bouton2);
+
+//        for (Node n : vbox.getChildren()) {
+//            GridPane.setMargin(n, new Insets(10));
+//        }
+
 
         Label labelResult = new Label("Résultat");
         labelResult.setUnderline(true);
@@ -120,7 +133,9 @@ public class Bmr extends Application {
 
         gridPane2.add(textFieldCal,4,24);
 
-
+        for (Node n : gridPane2.getChildren()) {
+            GridPane.setMargin(n, new Insets(10));
+        }
 
         bouton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
