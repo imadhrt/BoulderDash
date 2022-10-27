@@ -1,5 +1,10 @@
 package g58132.atlg3.ascii.Model;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
 public class AsciiPaint {
     private Drawing drawing;
 
@@ -65,6 +70,33 @@ public class AsciiPaint {
         }
         drawing.addShape(new Square(new Point(x,y),side,color));
     }
+
+    /**
+     * Add a new Group in the list of shape
+     *
+     * @param color is a color of Group
+     */
+    public void newGroup(char color, List<Integer> indexShape){
+        List<Shape> groupShape=new ArrayList();
+        for (int i=0;i<indexShape.size();i++){
+            groupShape.add(drawing.getShapeAtIndex(indexShape.get(i)));
+
+        }
+        Group group=new Group(color,groupShape);
+
+
+
+
+        while(!indexShape.isEmpty()){
+            int nb = Collections.max(indexShape);
+            drawing.remove(nb);
+            indexShape.remove((int) nb);
+        }
+        drawing.addShape(group);
+
+    }
+
+
 
     /**
      * Accessor of the drawing

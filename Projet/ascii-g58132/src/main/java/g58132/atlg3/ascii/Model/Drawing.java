@@ -69,7 +69,12 @@ public class Drawing {
 
         return null;
     }
-
+    Shape getShapeAtIndex(int index){
+        return shapes.get(index);
+    }
+   void remove(int i){
+        shapes.remove(i);
+   }
     /**
      * Accessor of the height
      * <p>
