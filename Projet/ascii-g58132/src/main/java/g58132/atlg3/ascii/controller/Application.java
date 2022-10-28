@@ -72,12 +72,11 @@ private  AsciiView view;
                  } else if (tab.length == 7 && tab[0].equals("add") && tab[1].equals("rectangle") && tab[2].matches("-?\\d+")
                          && tab[3].matches("-?\\d+") && tab[4].matches("-?\\d+") && tab[5].matches("-?\\d+") && tab[6].matches("[a-z]")) {
                      paint.newRectangle(Integer.parseInt(tab[2]), Integer.parseInt(tab[3]), Integer.parseInt(tab[4]), Integer.parseInt(tab[5]), tab[6].charAt(0));
-                 } else if ( tab.length>=2&&tab[0].equals("group") && tab[1].matches("[a-z]")){
+                 }
+
+            else if ( tab.length>3&&tab[0].equals("group") && tab[1].matches("[a-z]")){
                 List<Integer> liste=new ArrayList<>();
                       boolean isDigit=true;
-                       if(tab.length==2){
-                           isDigit=false;
-                       }
                      for (int i=2;i< tab.length && isDigit;i++){
 
                          if(!tab[i].matches("\\d*")){

@@ -1,7 +1,6 @@
 package g58132.atlg3.ascii.Model;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -90,7 +89,7 @@ public class AsciiPaint {
         while(!indexShape.isEmpty()){
             int nb = Collections.max(indexShape);
             drawing.remove(nb);
-            indexShape.remove((int) nb);
+            indexShape.remove((Integer) nb);
         }
         drawing.addShape(group);
 

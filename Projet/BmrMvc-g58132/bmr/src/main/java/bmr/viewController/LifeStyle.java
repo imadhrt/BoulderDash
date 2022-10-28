@@ -6,7 +6,7 @@ public enum LifeStyle {
     private String niveau;
 
 
-    LifeStyle(double facteur,String niveau ) {
+    private LifeStyle(double facteur,String niveau ) {
         this.facteur=facteur;
         this.niveau=niveau;
     }
@@ -21,6 +21,6 @@ public enum LifeStyle {
 
     @Override
     public String toString() {
-        return ""+niveau;
+        return niveau;
     }
 }

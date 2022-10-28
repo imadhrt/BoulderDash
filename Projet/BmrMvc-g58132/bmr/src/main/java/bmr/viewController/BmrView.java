@@ -17,9 +17,11 @@ import javafx.stage.Stage;
 public class BmrView extends Application {
     private BmrImput data;
     private BmrOutput result;
+    private Person person;
 
     public static void main(String[] args) {
-        launch(args);
+      launch(args);
+
     }
 
     @Override

@@ -16,32 +16,6 @@ public class BmrImput extends GridPane {
     private RadioButton genreMan;
     private RadioButton genreWoman;
     private ChoiceBox<LifeStyle> styleBox ;
-
-
-    public int getPoidsField() {
-        return Integer.parseInt(poidsField.getText());
-    }
-
-    public int getTailleField() {
-        return Integer.parseInt(tailleField.getText());
-    }
-
-    public int getAgeField() {
-        return Integer.parseInt(ageField.getText());
-    }
-
-    public boolean getGenreMan() {
-        return genreMan.isSelected();
-    }
-
-    public boolean getGenreWoman() {
-        return genreWoman.isSelected();
-    }
-
-    public LifeStyle getStyleBox() {
-        return (LifeStyle) styleBox.getValue();
-    }
-
     public BmrImput() {
         Label label = new Label("Donnée");
         label.setUnderline(true);
@@ -51,6 +25,7 @@ public class BmrImput extends GridPane {
         this.add(label2, 0, 2);
 
         tailleField=new TextField();
+        tailleField.setPromptText("Taille en cm");
         this.add(tailleField,4,2);
 
         Label labelPoid=new Label("Poids (kg)");
@@ -82,6 +57,8 @@ public class BmrImput extends GridPane {
 
 
 
+
+
 //        cb.setTooltip(new Tooltip("selectionne le style de vie"));
         this.add(new Label("Style de vie"),0,10);
         this.add(styleBox,4,10);
@@ -89,4 +66,33 @@ public class BmrImput extends GridPane {
 
 
     }
+
+
+
+    public int getPoidsField() {
+        return Integer.parseInt(poidsField.getText());
+
+    }
+
+    public int getTailleField() {
+        return Integer.parseInt(tailleField.getText());
+    }
+
+    public int getAgeField() {
+        return Integer.parseInt(ageField.getText());
+    }
+
+    public boolean getGenreMan() {
+        return genreMan.isSelected();
+    }
+
+    public boolean getGenreWoman() {
+        return genreWoman.isSelected();
+    }
+
+    public LifeStyle getStyleBox() {
+        return (LifeStyle) styleBox.getValue();
+    }
+
+
 }

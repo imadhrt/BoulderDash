@@ -51,7 +51,7 @@ public class Bmr extends Application {
 
 
 
-        Scene scene = new Scene(vbox, 600, 300);
+        Scene scene = new Scene(vbox);
 //        Scene scene2=new Scene(root2,50,50);
         Label label = new Label("Donnée");
         label.setUnderline(true);
@@ -61,17 +61,19 @@ public class Bmr extends Application {
         gridPane.add(label2, 0, 2);
 
         TextField textField=new TextField();
+        textField.setPromptText("Taille en cm");
         gridPane.add(textField,4,2);
 
         Label labelPoid=new Label("Poids (kg)");
         gridPane.add(labelPoid,0,4);
         TextField textField2=new TextField();
-
+         textField2.setPromptText("Poids en kg");
         gridPane.add(textField2,4,4);
 
         Label labelAge=new Label("Age (années)");
         gridPane.add(labelAge,0,6);
         TextField textField3=new TextField();
+        textField3.setPromptText("Age en années");
 
         gridPane.add(textField3,4,6);
 
@@ -90,7 +92,15 @@ public class Bmr extends Application {
         gridPane.add(labelSexe,0,8);
         for (Node n : gridPane.getChildren()) {
             GridPane.setMargin(n, new Insets(10));
+            n.addEventFilter(KeyEvent.KEY_TYPED, e -> {
+                if (!e.getCharacter().matches("[0-9]*")) {
+                    e.consume();
+                }
+            });
+
         }
+
+
 
 //        gridPane.add(radioButtonHomme,4,8);
 //        gridPane.add(radioButtonFemme,5,8);
@@ -104,12 +114,10 @@ public class Bmr extends Application {
         gridPane.add(cb,4,10);
 
         Button bouton=new Button("Calcul du BMR");
-        bouton.setPrefWidth(2000);
-
-
-
         Button bouton2=new Button("Clear");
-        bouton2.setPrefWidth(2000);
+        bouton.setMaxWidth(Double.MAX_VALUE);
+        bouton2.setMaxWidth(Double.MAX_VALUE);
+
         vbox.getChildren().addAll(bouton,bouton2);
 
 //        for (Node n : vbox.getChildren()) {
@@ -125,16 +133,20 @@ public class Bmr extends Application {
         gridPane2.add(labelBmr, 0, 22);
 
         TextField textFieldBmr=new TextField();
+        textFieldBmr.setPromptText("Résultat du BMR");
+        textFieldBmr.setEditable(false);
         gridPane2.add(textFieldBmr,4,22);
 
         Label labelCal=new Label("Calories");
         gridPane2.add(labelCal,0,24);
         TextField textFieldCal=new TextField();
-
+        textFieldCal.setEditable(false);
+textFieldCal.setPromptText("Dépense en calories");
         gridPane2.add(textFieldCal,4,24);
 
         for (Node n : gridPane2.getChildren()) {
             GridPane.setMargin(n, new Insets(10));
+
         }
 
         bouton.setOnAction(new EventHandler<ActionEvent>() {
@@ -148,7 +160,7 @@ public class Bmr extends Application {
                     textFieldBmr.setStyle("-fx-text-fill: red;");
                     textFieldCal.setText("FAILED");
                     textFieldCal.setStyle("-fx-text-fill: red;");
-
+                     return;
 
                 }
                 if((poid.length()!=0&&Integer.parseInt(poid)<=0) ||(taille.length()!=0&&Integer.parseInt(taille)<=0)
@@ -175,8 +187,9 @@ public class Bmr extends Application {
                     }
 
                 }
+
                 double a=0;
-                switch (cb.getSelectionModel().selectedIndexProperty().get()){
+                switch (cb.getSelectionModel().selectedIndexProperty().getValue()){
                     case 0:
                         a=1.2;
                         break;
