@@ -95,6 +95,15 @@ public class AsciiPaint {
 
     }
 
+    public void newLine(int depart_x,int depart_y,int arrive_x,int arrive_y,char color){
+        drawing.addShape(new Line(new Point(depart_x,depart_y),new Point(arrive_x,arrive_y),color));
+
+
+    }
+
+
+
+
 
 
     /**
