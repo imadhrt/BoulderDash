@@ -1,12 +1,12 @@
-package bmr.viewController;
+package controlerView;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
+import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
-
-import java.util.List;
+import javafx.scene.layout.HBox;
 
 
 public class BmrImput extends GridPane {
@@ -31,13 +31,13 @@ public class BmrImput extends GridPane {
         Label labelPoid=new Label("Poids (kg)");
         this.add(labelPoid,0,4);
         poidsField=new TextField();
-
+        poidsField.setPromptText("Poids en kg");
         this.add(poidsField,4,4);
 
         Label labelAge=new Label("Age (années)");
         this.add(labelAge,0,6);
         ageField=new TextField();
-
+        ageField.setPromptText("Age en années");
         this.add(ageField,4,6);
 
         ToggleGroup group = new ToggleGroup();
@@ -48,18 +48,22 @@ public class BmrImput extends GridPane {
 
         genreWoman=new RadioButton("Femme");
         genreWoman.setToggleGroup(group);
-
+        HBox boutSexe=new HBox();
+        this.add(boutSexe,4,8);
+        boutSexe.getChildren().addAll(genreMan,genreWoman);
         this.add(labelSexe,0,8);
-        this.add(genreMan,4,8);
-        this.add(genreWoman,5,8);
-        styleBox= new ChoiceBox(FXCollections.observableArrayList(LifeStyle.values()));
+        for (Node n : this.getChildren()) {
+            GridPane.setMargin(n, new Insets(10));
+            n.addEventFilter(KeyEvent.KEY_TYPED, e -> {
+                if (!e.getCharacter().matches("[0-9]*")) {
+                    e.consume();
+                }
+            });
 
+        }
 
-
-
-
-
-//        cb.setTooltip(new Tooltip("selectionne le style de vie"));
+        styleBox = new ChoiceBox(FXCollections.observableArrayList(LifeStyle.values())
+        );
         this.add(new Label("Style de vie"),0,10);
         this.add(styleBox,4,10);
 
@@ -68,30 +72,49 @@ public class BmrImput extends GridPane {
     }
 
 
-
     public int getPoidsField() {
+        if(poidsField.getText().length()==0){
+            return -1;
+        }
         return Integer.parseInt(poidsField.getText());
 
     }
 
     public int getTailleField() {
+        if(tailleField.getText().length()==0){
+            return -1;
+        }
+
         return Integer.parseInt(tailleField.getText());
     }
 
     public int getAgeField() {
+        if(ageField.getText().length()==0){
+            return -1;
+        }
         return Integer.parseInt(ageField.getText());
     }
 
     public boolean getGenreMan() {
         return genreMan.isSelected();
     }
-
     public boolean getGenreWoman() {
         return genreWoman.isSelected();
     }
 
     public LifeStyle getStyleBox() {
+        if(styleBox.getValue()==null){
+            return null;
+        }
         return (LifeStyle) styleBox.getValue();
+    }
+
+    public void clear(){
+        poidsField.clear();
+        tailleField.clear();
+        ageField.clear();
+        styleBox.getSelectionModel().clearSelection();
+
     }
 
 

@@ -1,4 +1,4 @@
-package bmr.viewController;
+package controlerView;
 
 public enum LifeStyle {
     SEDENTAIRE(1.2,"sédentaire"),PEU_ACTIF(1.375,"Peu actif"),ACTIF(1.55,"Actif"),FORT_ACTIF(1.725,"fort actif"),EXTREMEMENT_ACTIF(1.9,"extrêmement actif");
@@ -18,9 +18,5 @@ public enum LifeStyle {
     public String getNiveau() {
         return niveau;
     }
-
-    @Override
-    public String toString() {
-        return niveau;
-    }
+    
 }

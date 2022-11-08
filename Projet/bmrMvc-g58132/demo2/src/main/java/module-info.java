@@ -1,9 +1,9 @@
-module com.example.bmr {
+module com.example.demo2 {
     requires javafx.controls;
     requires javafx.fxml;
 
     requires org.controlsfx.controls;
 
-    opens com.example.bmr to javafx.fxml;
-    exports com.example.bmr;
+    opens controlerView to javafx.fxml;
+    exports controlerView;
 }

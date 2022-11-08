@@ -1,4 +1,4 @@
-package com.example.bmr;
+package controlerView;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
