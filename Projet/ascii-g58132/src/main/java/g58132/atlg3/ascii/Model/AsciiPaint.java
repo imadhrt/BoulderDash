@@ -106,6 +106,7 @@ public class AsciiPaint {
      * @param color is a color of Group
      */
     public void newGroup(char color, List<Integer> indexShape){
+
         List<Shape> groupShape=new ArrayList();
         for (int i=0;i<indexShape.size();i++){
             groupShape.add(drawing.getShapeAtIndex(indexShape.get(i)));
@@ -134,6 +135,7 @@ public class AsciiPaint {
         command.execute();
         undoStack.push(command);
         redoStack.clear();
+
 
     }
     public void newList(){

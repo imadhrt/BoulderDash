@@ -13,7 +13,7 @@ public class Line extends ColoredShape {
     @Override
     public boolean inside(Point p) {
         double m= ((point_arrive.getY()-point_arrive.getX())/ point_depart.getY()- point_depart.getX());
-        return Math.abs((m*p.getX()-p.getY()-m* point_depart.getX()+ point_depart.getY())/Math.sqrt(Math.pow(m,2)+1))<0.5;
+        return Math.abs((m*p.getX()-p.getY()-m* point_depart.getX()+ point_depart.getY())/Math.sqrt(Math.pow(m,2)+1))<0.1;
     }
 
     @Override
