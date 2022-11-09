@@ -34,5 +34,9 @@ public class Circle extends ColoredShape {
         center.move(dx, dy);
     }
 
-
+    @Override
+    public String toString() {
+        return "Circle " + center.getX() +"  "+center.getY()+"  "+ radius+ "  "+getColor();
+    }
 }
+

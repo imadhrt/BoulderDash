@@ -3,9 +3,12 @@ package g58132.atlg3.ascii.Model;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Stack;
 
 public class AsciiPaint {
     private Drawing drawing;
+    private Stack<Command> undoStack=new Stack();
+    private Stack<Command> redoStack=new Stack();
 
     /**
      * Constructor of AsciiPaint without parameter
@@ -24,6 +27,21 @@ public class AsciiPaint {
         drawing=new Drawing(width,height);
 
     }
+    public void undo(){
+        if(!undoStack.isEmpty()){
+            Command command=undoStack.pop();
+            command.unexecute();
+            redoStack.push(command);
+        }
+    }
+    public void redo(){
+        if(!redoStack.isEmpty()){
+            Command command=redoStack.pop();
+            command.execute();
+            undoStack.push(command);
+        }
+    }
+
 
     /**
      * Add a new circle in the list of shape
@@ -37,7 +55,11 @@ public class AsciiPaint {
         if (radius <= 0) {
             throw new IllegalArgumentException("the radius is not negative and null: " + radius);
         }
-       drawing.addShape(new Circle(new Point(x,y),radius,color));
+     var circle=(new Circle(new Point(x,y),radius,color));
+        var command=new AddCommand(circle,drawing);
+        command.execute();
+        undoStack.push(command);
+        redoStack.clear();;
     }
     /**
      * Add a new rectangle in the list of shape
@@ -52,7 +74,11 @@ public class AsciiPaint {
         if(width<=0 || height<=0){
             throw new  IllegalArgumentException("the height mustn't be negative or null");
         }
-        drawing.addShape(new Rectangle(new Point(x,y),width,height,color));
+        var rectangle=(new Rectangle(new Point(x,y),width,height,color));
+        var command=new AddCommand(rectangle,drawing);
+        command.execute();
+        undoStack.push(command);
+        redoStack.clear();;
     }
     /**
      * Add a new Square in the list of shape
@@ -67,7 +93,11 @@ public class AsciiPaint {
         if(side<=0 ){
             throw new  IllegalArgumentException("the height mustn't be negative or null");
         }
-        drawing.addShape(new Square(new Point(x,y),side,color));
+       var shape=(new Square(new Point(x,y),side,color));
+        var command=new AddCommand(shape,drawing);
+        command.execute();
+        undoStack.push(command);
+        redoStack.clear();;
     }
 
     /**
@@ -91,15 +121,40 @@ public class AsciiPaint {
             drawing.remove(nb);
             indexShape.remove((Integer) nb);
         }
-        drawing.addShape(group);
+        var command=new AddCommand(group,drawing);
+        command.execute();
+        undoStack.push(command);
+        redoStack.clear();;
 
     }
 
     public void newLine(int depart_x,int depart_y,int arrive_x,int arrive_y,char color){
-        drawing.addShape(new Line(new Point(depart_x,depart_y),new Point(arrive_x,arrive_y),color));
+       var line=(new Line(new Point(depart_x,depart_y),new Point(arrive_x,arrive_y),color));
+        var command=new AddCommand(line,drawing);
+        command.execute();
+        undoStack.push(command);
+        redoStack.clear();
+
+    }
+    public void newList(){
+        drawing.displayDrawing();
 
 
     }
+
+    public void newDelete(int pos){
+        drawing.delete(pos);
+    }
+
+    public void newMove(int pos,int x,int y){
+        drawing.moveShape(pos,x,y);
+    }
+
+    public void  newColor(int pos,char color){
+       drawing.changeColor(pos,color);
+    }
+
+
 
 
 

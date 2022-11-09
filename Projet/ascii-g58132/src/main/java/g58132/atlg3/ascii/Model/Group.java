@@ -1,6 +1,5 @@
 package g58132.atlg3.ascii.Model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Group extends ColoredShape{
@@ -30,5 +29,12 @@ public class Group extends ColoredShape{
         }
 
 
+    }
+
+    @Override
+    public String toString() {
+        return "Group{" +
+                "shapes=" + shapes.toString() +
+                '}';
     }
 }

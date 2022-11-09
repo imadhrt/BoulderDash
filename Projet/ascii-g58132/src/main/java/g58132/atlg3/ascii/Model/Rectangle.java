@@ -41,5 +41,12 @@ public class Rectangle  extends ColoredShape {
         upperLeft.move(dx,dy);
     }
 
+    @Override
+    public String toString() {
+        return "Circle " + upperLeft.getX() +"  "+upperLeft.getY()+"  "+ width+ "  "+height+"  "+getColor();
+    }
+
+
+
 
 }

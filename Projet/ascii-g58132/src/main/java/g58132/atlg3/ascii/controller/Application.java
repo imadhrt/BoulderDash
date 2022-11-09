@@ -73,14 +73,14 @@ private  AsciiView view;
                          && tab[3].matches("-?\\d+") && tab[4].matches("-?\\d+") && tab[5].matches("-?\\d+") && tab[6].matches("[a-z]")) {
                      paint.newRectangle(Integer.parseInt(tab[2]), Integer.parseInt(tab[3]), Integer.parseInt(tab[4]), Integer.parseInt(tab[5]), tab[6].charAt(0));
                  } else if (command.matches("move\\s*[0-9]\\s*\\d\\s*\\d\\s*")) {
-                 System.out.println("zzdefnj");
+                 paint.newMove(Integer.parseInt(tab[1]),Integer.parseInt(tab[2]),Integer.parseInt(tab[3]));
+
              }
 
 
 
             else if(tab.length==7 && tab[0].equals("add") && tab[1].equals("line") && tab[2].matches("-?\\d+")
                      && tab[3].matches("-?\\d+") && tab[4].matches("-?\\d+") && tab[5].matches("-?\\d+")&& tab[6].matches("[a-z]")){
-                 System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaa4552");
                 paint.newLine(Integer.parseInt(tab[2]),Integer.parseInt(tab[3]),Integer.parseInt(tab[4]),Integer.parseInt(tab[5]),tab[6].charAt(0));
 
 
@@ -106,15 +106,26 @@ private  AsciiView view;
                      if(isDigit){
                          paint.newGroup(tab[1].charAt(0),liste);
                      }
+             }
+             else if (command.equals("list")) {
+                 paint.newList();
 
-
-
-             } else if (command.equals("show")) {
+             }
+            else if (command.equals("show")) {
                      view.display(paint.getDrawing());
 
-                 }
+                 } else if (command.matches("delete\\s*[0-9]\\s*")) {
+                 paint.newDelete(Integer.parseInt(tab[1]));
 
-            else{
+             } else if (command.matches("color\\s*[0-9]\\s*[a-z]\\s*")) {
+                paint.newColor(Integer.parseInt(tab[1]),tab[2].charAt(0));
+                 
+             } else if (command.equals("undo")) {
+                paint.undo();
+
+             } else if (command.equals("redo")) {
+                 paint.redo();
+             } else{
                 view.displayHelp();
 
             }

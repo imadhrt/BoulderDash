@@ -21,4 +21,8 @@ public class Line extends ColoredShape {
         point_depart.move(dx,dy);
 
     }
+    @Override
+    public String toString() {
+        return "Circle " + point_depart.getX() +"  "+point_depart.getY()+"  "+ point_arrive.getX() +"  "+point_arrive.getY()+ "  "+getColor();
+    }
 }

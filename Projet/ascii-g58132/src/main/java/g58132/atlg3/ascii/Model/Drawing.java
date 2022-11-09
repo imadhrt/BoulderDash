@@ -75,6 +75,30 @@ public class Drawing {
    void remove(int i){
         shapes.remove(i);
    }
+
+   public void displayDrawing(){
+        for (int i=0;i<shapes.size();i++){
+            System.out.println(i+")"+shapes.get(i).toString());
+        }
+
+   }
+   public void delete(int pos){
+        shapes.remove(pos);
+
+   }
+
+   public void moveShape(int pos,int x,int y){
+        shapes.get(pos).move(x,y);
+   }
+
+   public void changeColor(int pos,char color){
+        shapes.get(pos).setColor(color);
+   }
+
+   public void remove(Shape shape){
+        shapes.remove(shape);
+
+   }
     /**
      * Accessor of the height
      * <p>
