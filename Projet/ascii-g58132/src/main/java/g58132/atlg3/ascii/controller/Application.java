@@ -1,6 +1,8 @@
 package g58132.atlg3.ascii.controller;
 
 import g58132.atlg3.ascii.Model.AsciiPaint;
+import g58132.atlg3.ascii.Model.Command;
+import g58132.atlg3.ascii.Model.ManagerCommand;
 import g58132.atlg3.ascii.View.AsciiView;
 
 import java.util.ArrayList;
@@ -11,6 +13,7 @@ public class Application {
 
 private  AsciiPaint paint;
 private  AsciiView view;
+private ManagerCommand manager;
     /**
      * Constructor of Application
      *
@@ -121,10 +124,10 @@ private  AsciiView view;
                 paint.newColor(Integer.parseInt(tab[1]),tab[2].charAt(0));
                  
              } else if (command.equals("undo")) {
-                paint.undo();
+               manager.undo();
 
              } else if (command.equals("redo")) {
-                 paint.redo();
+                 manager.redo();
              } else{
                 view.displayHelp();
 

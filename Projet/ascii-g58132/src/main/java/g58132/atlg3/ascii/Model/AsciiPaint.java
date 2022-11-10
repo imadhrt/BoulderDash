@@ -7,8 +7,7 @@ import java.util.Stack;
 
 public class AsciiPaint {
     private Drawing drawing;
-    private Stack<Command> undoStack=new Stack();
-    private Stack<Command> redoStack=new Stack();
+private ManagerCommand managerCommand=new ManagerCommand();
 
     /**
      * Constructor of AsciiPaint without parameter
@@ -27,20 +26,20 @@ public class AsciiPaint {
         drawing=new Drawing(width,height);
 
     }
-    public void undo(){
-        if(!undoStack.isEmpty()){
-            Command command=undoStack.pop();
-            command.unexecute();
-            redoStack.push(command);
-        }
-    }
-    public void redo(){
-        if(!redoStack.isEmpty()){
-            Command command=redoStack.pop();
-            command.execute();
-            undoStack.push(command);
-        }
-    }
+//    public void undo(){
+//        if(!undoStack.isEmpty()){
+//            Command command=undoStack.pop();
+//            command.unexecute();
+//            redoStack.push(command);
+//        }
+//    }
+//    public void redo(){
+//        if(!redoStack.isEmpty()){
+//            Command command=redoStack.pop();
+//            command.execute();
+//            undoStack.push(command);
+//        }
+//    }
 
 
     /**
@@ -57,9 +56,8 @@ public class AsciiPaint {
         }
      var circle=(new Circle(new Point(x,y),radius,color));
         var command=new AddCommand(circle,drawing);
-        command.execute();
-        undoStack.push(command);
-        redoStack.clear();;
+        managerCommand.addAllCommand(command);
+
     }
     /**
      * Add a new rectangle in the list of shape
@@ -76,9 +74,7 @@ public class AsciiPaint {
         }
         var rectangle=(new Rectangle(new Point(x,y),width,height,color));
         var command=new AddCommand(rectangle,drawing);
-        command.execute();
-        undoStack.push(command);
-        redoStack.clear();;
+       managerCommand.addAllCommand(command);
     }
     /**
      * Add a new Square in the list of shape
@@ -95,9 +91,7 @@ public class AsciiPaint {
         }
        var shape=(new Square(new Point(x,y),side,color));
         var command=new AddCommand(shape,drawing);
-        command.execute();
-        undoStack.push(command);
-        redoStack.clear();;
+        managerCommand.addAllCommand(command);
     }
 
     /**
@@ -123,18 +117,14 @@ public class AsciiPaint {
             indexShape.remove((Integer) nb);
         }
         var command=new AddCommand(group,drawing);
-        command.execute();
-        undoStack.push(command);
-        redoStack.clear();;
+    managerCommand.addAllCommand(command);
 
     }
 
     public void newLine(int depart_x,int depart_y,int arrive_x,int arrive_y,char color){
        var line=(new Line(new Point(depart_x,depart_y),new Point(arrive_x,arrive_y),color));
         var command=new AddCommand(line,drawing);
-        command.execute();
-        undoStack.push(command);
-        redoStack.clear();
+        managerCommand.addAllCommand(command);
 
 
     }
@@ -145,7 +135,9 @@ public class AsciiPaint {
     }
 
     public void newDelete(int pos){
-        drawing.delete(pos);
+
+        var command=new DeleteCommand(drawing,pos);
+        managerCommand.addAllCommand(command);
     }
 
     public void newMove(int pos,int x,int y){

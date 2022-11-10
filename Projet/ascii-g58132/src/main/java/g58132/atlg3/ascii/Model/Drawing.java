@@ -82,10 +82,15 @@ public class Drawing {
         }
 
    }
+    public void addShape(Shape shape, int pos) {
+        shapes.add(pos,shape);
+    }
+
    public void delete(int pos){
+
         shapes.remove(pos);
 
-   }
+    }
 
    public void moveShape(int pos,int x,int y){
         shapes.get(pos).move(x,y);
@@ -120,4 +125,6 @@ public class Drawing {
     public int getWidth() {
         return width;
     }
+
+
 }
