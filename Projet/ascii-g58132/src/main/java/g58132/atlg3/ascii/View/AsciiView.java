@@ -18,10 +18,18 @@ private AsciiPaint paint;
      * Display help
      */
 
-    public void displayHelp() {
+    public void displayError() {
         System.out.println("The command entered is not valid!!!" +
                          "the commands used are ADD, SHOW,HELP, EXIT and with their parameters");
     }
+    public void help(){
+        System.out.println("example of the command: ");
+        System.out.println("-->add circle 5 5 5 c\n-->add rectangle 4 5 8 9 r\n-->add square 1 2 4 s\n" +
+                "-->add line 1 1 5 5 b\n-->group c 0 1....(index shapes)\n-->ungroup 1(index shape)\n-->color 1(index shape) r\n-->move 2(index shape) 5 9\n" +
+                "-->show(display the paint)\n-->delete 1(index shape)\n-->undo(cancel the last command)\n-->redo (execute the last command cancel)\n");
+
+    }
+
     public void enterCommand(){
         System.out.println("Enter the command:");
     }

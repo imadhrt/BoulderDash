@@ -6,6 +6,7 @@ package g58132.atlg3.ascii.Model;
    private  int pos;
 
      public DeleteCommand(Drawing drawing, int pos) {
+
          this.shape = drawing.getShapeAtIndex(pos);
          this.drawing = drawing;
          this.pos = pos;

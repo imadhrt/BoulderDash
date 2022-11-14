@@ -44,6 +44,9 @@ public class Drawing {
         shapes.add(shape);
 
     }
+    public int sizeShapes(){
+        return shapes.size();
+    }
 
     /**
      * get shape at
@@ -70,6 +73,9 @@ public class Drawing {
         return null;
     }
     Shape getShapeAtIndex(int index){
+        if(shapes.size()-1<index){
+           throw new  IllegalArgumentException("the shape at the index "+index+" doesn't exist!!!!!!! ");
+        }
         return shapes.get(index);
     }
    void remove(int i){
@@ -85,6 +91,14 @@ public class Drawing {
     public void addShape(Shape shape, int pos) {
         shapes.add(pos,shape);
     }
+    public int shapePos(Shape shape){
+        for (int i=0;i<shapes.size();i++){
+            if(shapes.get(i).equals(shape)){
+                return i;
+            }
+        }
+        return -1;
+    }
 
    public void delete(int pos){
 
@@ -93,12 +107,12 @@ public class Drawing {
     }
 
    public void moveShape(int pos,int x,int y){
+       if(shapes.size()-1<pos){
+           throw new  IllegalArgumentException("the shape at the index "+pos+" doesn't exist ");
+       }
         shapes.get(pos).move(x,y);
    }
 
-   public void changeColor(int pos,char color){
-        shapes.get(pos).setColor(color);
-   }
 
    public void remove(Shape shape){
         shapes.remove(shape);

@@ -1,9 +1,7 @@
 package g58132.atlg3.ascii.Model;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Stack;
 
 public class AsciiPaint {
     private Drawing drawing;
@@ -26,20 +24,15 @@ private ManagerCommand managerCommand=new ManagerCommand();
         drawing=new Drawing(width,height);
 
     }
-//    public void undo(){
-//        if(!undoStack.isEmpty()){
-//            Command command=undoStack.pop();
-//            command.unexecute();
-//            redoStack.push(command);
-//        }
-//    }
-//    public void redo(){
-//        if(!redoStack.isEmpty()){
-//            Command command=redoStack.pop();
-//            command.execute();
-//            undoStack.push(command);
-//        }
-//    }
+    public void undo(){
+        managerCommand.undo();;
+
+        }
+
+    public void redo(){
+managerCommand.redo();
+        }
+
 
 
     /**
@@ -98,26 +91,41 @@ private ManagerCommand managerCommand=new ManagerCommand();
      * Add a new Group in the list of shape
      *
      * @param color is a color of Group
+     * @param indexShape is index of shape at the list
+     *
      */
     public void newGroup(char color, List<Integer> indexShape){
-
-        List<Shape> groupShape=new ArrayList();
-        for (int i=0;i<indexShape.size();i++){
-            groupShape.add(drawing.getShapeAtIndex(indexShape.get(i)));
-
+        List <Shape>list=new ArrayList();
+        for (var e:indexShape) {
+            list.add(drawing.getShapeAtIndex(e));
         }
-        Group group=new Group(color,groupShape);
+       Group group=new Group(color,list);
 
-
-
-
-        while(!indexShape.isEmpty()){
-            int nb = Collections.max(indexShape);
-            drawing.remove(nb);
-            indexShape.remove((Integer) nb);
-        }
-        var command=new AddCommand(group,drawing);
+//        List<Shape> groupShape=new ArrayList();
+//        for (int i=0;i<indexShape.size();i++){
+//            groupShape.add(drawing.getShapeAtIndex(indexShape.get(i)));
+//
+//        }
+//        Group group=new Group(color,groupShape);
+//
+//
+//
+//
+//        while(!indexShape.isEmpty()){
+//            int nb = Collections.max(indexShape);
+//            drawing.remove(nb);
+//            indexShape.remove((Integer) nb);
+//        }
+        var command=new GroupCommand(drawing,indexShape,color);
     managerCommand.addAllCommand(command);
+
+
+    }
+    public void newUngroup(int pos,List<Shape> liste,char color){
+        //char color,List<Shape> shapes
+        var group=new Group(color,liste);
+        var command=new UngroupCommand(group,drawing,pos);
+        managerCommand.addAllCommand(command);
 
     }
 
@@ -130,8 +138,6 @@ private ManagerCommand managerCommand=new ManagerCommand();
     }
     public void newList(){
         drawing.displayDrawing();
-
-
     }
 
     public void newDelete(int pos){
@@ -141,11 +147,14 @@ private ManagerCommand managerCommand=new ManagerCommand();
     }
 
     public void newMove(int pos,int x,int y){
-        drawing.moveShape(pos,x,y);
+        var command=new MoveCommande(pos,x,y,drawing);
+        managerCommand.addAllCommand(command);
     }
 
-    public void  newColor(int pos,char color){
-       drawing.changeColor(pos,color);
+    public void  newColor( int pos,char newColor){
+
+        var command=new ChangeColorCommand(newColor,drawing.getShapeAtIndex(pos).getColor(), drawing.getShapeAtIndex(pos));
+        managerCommand.addAllCommand(command);
     }
 
 

@@ -3,7 +3,7 @@ package g58132.atlg3.ascii.Model;
 import java.util.List;
 
 public class Group extends ColoredShape{
-  private List<Shape> shapes;
+    private List<Shape> shapes;
 
     public Group(char color,List<Shape> shapes1) {
         super(color);
@@ -31,10 +31,15 @@ public class Group extends ColoredShape{
 
     }
 
+
     @Override
     public String toString() {
         return "Group{" +
                 "shapes=" + shapes.toString() +
                 '}';
+    }
+
+    public List<Shape> getShapes() {
+        return shapes;
     }
 }
