@@ -6,8 +6,8 @@ public class Square extends Rectangle{
         super(upperLeft,side,side,color);
     }
 
-
-
-
-
+    @Override
+    public String toString() {
+        return "Square";
+    }
 }

@@ -91,14 +91,7 @@ public class Drawing {
     public void addShape(Shape shape, int pos) {
         shapes.add(pos,shape);
     }
-    public int shapePos(Shape shape){
-        for (int i=0;i<shapes.size();i++){
-            if(shapes.get(i).equals(shape)){
-                return i;
-            }
-        }
-        return -1;
-    }
+
 
    public void delete(int pos){
 

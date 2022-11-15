@@ -121,10 +121,11 @@ managerCommand.redo();
 
 
     }
-    public void newUngroup(int pos,List<Shape> liste,char color){
-        //char color,List<Shape> shapes
-        var group=new Group(color,liste);
-        var command=new UngroupCommand(group,drawing,pos);
+    public void newUngroup(int pos){
+
+        var group=(Group) drawing.getShapeAtIndex(pos);
+        var index=group.getShapeIntegerIndex();
+        var command=new UngroupCommand(group,drawing,pos,index);
         managerCommand.addAllCommand(command);
 
     }

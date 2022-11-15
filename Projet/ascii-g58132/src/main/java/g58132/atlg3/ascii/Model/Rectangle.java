@@ -43,7 +43,7 @@ public class Rectangle  extends ColoredShape {
 
     @Override
     public String toString() {
-        return "Circle " + upperLeft.getX() +"  "+upperLeft.getY()+"  "+ width+ "  "+height+"  "+getColor();
+        return "rectangle " + upperLeft.getX() +"  "+upperLeft.getY()+"  "+ width+ "  "+height+"  "+getColor();
     }
 
 

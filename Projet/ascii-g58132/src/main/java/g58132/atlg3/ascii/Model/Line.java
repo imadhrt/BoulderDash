@@ -23,6 +23,6 @@ public class Line extends ColoredShape {
     }
     @Override
     public String toString() {
-        return "Circle " + point_depart.getX() +"  "+point_depart.getY()+"  "+ point_arrive.getX() +"  "+point_arrive.getY()+ "  "+getColor();
+        return "Line " + point_depart.getX() +"  "+point_depart.getY()+"  "+ point_arrive.getX() +"  "+point_arrive.getY()+ "  "+getColor();
     }
 }

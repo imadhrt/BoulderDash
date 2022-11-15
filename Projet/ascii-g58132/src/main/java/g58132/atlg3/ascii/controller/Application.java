@@ -103,7 +103,7 @@ public class Application {
                     paint.newGroup(tab[1].charAt(0), liste);
 
                 } else if (command.matches(UNGROUP)) {
-//                    paint.newUngroup(Integer.parseInt(tab[1]));
+                  paint.newUngroup(Integer.parseInt(tab[1]));
 
                 } else if (command.matches(LIST)) {
                     paint.newList();

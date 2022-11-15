@@ -8,22 +8,23 @@ public class UngroupCommand implements  Command {
     private Group group;
     private Drawing drawing;
     private List<Integer> indexShape;
+            ;
     private List<Shape> shape;
     private int pos;
     private Shape shapeGroup;
-    public UngroupCommand(Group group, Drawing drawing,int pos) {
+    public UngroupCommand(Group group, Drawing drawing,int pos,List<Integer> indexShape){
         this.group = group;
         this.drawing = drawing;
+        this.pos=pos;
          this.shapeGroup=drawing.getShapeAtIndex(pos);
         this.shape =group.getShapes();
-        for (int i=0;i<shape.size();i++){
-            indexShape.add(drawing.shapePos(shape.get(i)));
-        }
+        this.indexShape=indexShape;
+
     }
 
     @Override
     public void execute() {
-        drawing.remove(pos);
+      drawing.remove(pos);
         for (int i=0;i<indexShape.size();i++){
             drawing.addShape(shape.get(i), indexShape.get(i));
         }
@@ -33,11 +34,12 @@ public class UngroupCommand implements  Command {
 
     @Override
     public void unexecute() {
-        drawing.addShape(shapeGroup,pos);
         Collections.sort(indexShape);
         for (int i= indexShape.size()-1;i>=0;i--){
             drawing.remove(indexShape.get(i));
         }
+
+        drawing.addShape(shapeGroup,pos);
 
 
     }
