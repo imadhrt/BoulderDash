@@ -11,9 +11,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import model.Person;
+import util.Observer;
 
 
-public class BmrView extends Application {
+public class BmrView extends Application  implements Observer {
     private BmrImput data;
     private BmrOutput result;
 
@@ -32,6 +33,8 @@ public class BmrView extends Application {
         data = new BmrImput();
          result=new BmrOutput();
          person=new Person();
+         person.addObserver(this);
+
         MenuBar menuBar = new MenuBar();
         Menu menuFile = new Menu("File");
 
@@ -59,7 +62,9 @@ public class BmrView extends Application {
 
 
 
-exit.setOnAction(actionEvent -> {primaryStage.close();});
+exit.setOnAction(actionEvent -> {
+    person.removeObserver(this);
+    primaryStage.close();});
         bouton2.setOnAction(actionEvent -> {
             data.clear();
             result.clear();
@@ -69,8 +74,6 @@ exit.setOnAction(actionEvent -> {primaryStage.close();});
 
 
             person.set(data.getTailleField(),data.getPoidsField(),data.getAgeField(),data.getGenreMan(),data.getStyleBox());
-            result.setBmr(person.getBmr());
-            result.setCal(person.getCal());
 
        });
 
@@ -79,5 +82,12 @@ exit.setOnAction(actionEvent -> {primaryStage.close();});
         primaryStage.show();
     }
 
+    @Override
+    public void update() {
+
+        result.setBmr(person.getBmr());
+        result.setCal(person.getCal());
+
     }
+}
 

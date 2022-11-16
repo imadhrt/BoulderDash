@@ -1,14 +1,20 @@
 package model;
 
 import controlerView.LifeStyle;
+import util.Observable;
+import util.Observer;
 
-public class Person {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Person implements Observable {
     private int height;
     private int weight;
     private int age;
     private boolean isMan;
     private LifeStyle lifeStyle;
 
+    private List<Observer> observers=new ArrayList();
 
 
     public void set(int height, int weight, int age, boolean isMan, LifeStyle lifeStyle) {
@@ -17,6 +23,7 @@ public class Person {
         this.age = age;
         this.isMan = isMan;
         this.lifeStyle = lifeStyle;
+         notifyObservers();
     }
 
     public int getHeight() {
@@ -86,6 +93,26 @@ public class Person {
 
         return calories;
 
+    }
+
+    @Override
+    public void addObserver(Observer observer) {
+        if(!observers.contains(observer)) {
+            observers.add(observer);
+        }
+
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+       observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (var observe:observers) {
+             observe.update();
+        }
     }
 }
 
