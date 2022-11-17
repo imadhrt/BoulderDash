@@ -14,7 +14,8 @@ public class ChangeColorCommand implements  Command{
 
     @Override
     public void execute() {
-shape.setColor(newColor);
+
+        shape.setColor(newColor);
     }
 
     @Override

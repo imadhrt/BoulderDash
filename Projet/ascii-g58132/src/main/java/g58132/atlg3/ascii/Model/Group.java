@@ -44,6 +44,7 @@ public class Group extends ColoredShape{
     public List<Shape> getShapes() {
         return shapes;
     }
+
     public int shapePos(Shape shape){
         for (int i=0;i<shapes.size();i++){
             if(Objects.equals(shapes.get(i), shape)){
