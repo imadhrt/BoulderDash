@@ -1,4 +1,4 @@
-package com.example.boulderdashg58132;
+package g58132.atlg3.boulderdash;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

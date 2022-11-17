@@ -4,6 +4,6 @@ module com.example.boulderdashg58132 {
 
     requires org.controlsfx.controls;
 
-    opens com.example.boulderdashg58132 to javafx.fxml;
-    exports com.example.boulderdashg58132;
+    opens g58132.atlg3.boulderdash to javafx.fxml;
+    exports g58132.atlg3.boulderdash;
 }
