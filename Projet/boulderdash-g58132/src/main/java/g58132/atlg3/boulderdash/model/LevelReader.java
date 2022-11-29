@@ -1,7 +1,6 @@
 package g58132.atlg3.boulderdash.model;
 
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
@@ -9,50 +8,66 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LevelReader {
-    private int height;
-    private int width;
-    private char [][] map;
-    private  String filename;
-    public LevelReader(int height, int width, String fileName){
-        this.height = height;
-        this.width = width;
-        String filename=fileName;
-        this.map = parcourirMap();}
+//private Board board;
+//private Level level;
 
 
-    public int getHeight() {
-        return height;
-    }
+    public void parcourirLevel(String texte){
+        try {
 
-    public int getWidth() {
-        return width;
-    }
 
-//    public char[][] getMap() {
-//        return map;
-//    }
-
-    public  char[][] parcourirMap() {
-        char [][] tab=new char[width][height];
-        try (var in = LevelReader.class.getResourceAsStream(filename)) {
-            int i;
-            while ( (i = in.read()) != -1 ) {
-                System.out.println((char) i);
+            // Le fichier d'entrée
+            File file = new File(texte);
+            // Créer l'objet File Reader
+            FileReader fr = new FileReader(file);
+            // Créer l'objet BufferedReader
+            BufferedReader br = new BufferedReader(fr);
+            int c = 0;
+            // Lire caractère par caractère
+            while ((c = br.read()) != -1) {
+                // convertir l'entier en char
+                char ch = (char) c;
+                // Afficher le caractère
+                System.out.print(ch);
             }
-        } catch (IOException e) {
 
+
+        }catch (IOException e) {
+            throw new RuntimeException(e);
         }
-        return tab;
     }
+
 
 
     public static void main(String[] args) {
-        LevelReader level=new LevelReader(79,26,"/g58132/atlg3/boulderdash/level/level1");
-        level.parcourirMap();
-
+        System.out.println();
     }
+    }
+//    }
+//        try
+//        {
+//            // Le fichier d'entrée
+////            File file = new File("C:\\Users\\elhar\\ATLG3\\58132-El-Harrouti\\Projet\\boulderdash-g58132\\src\\main\\java\\g58132\\atlg3\\boulderdash\\level\\level1");
+////            // Créer l'objet File Reader
+////            FileReader fr = new FileReader(file);
+////            // Créer l'objet BufferedReader
+////            BufferedReader br = new BufferedReader(fr);
+////            StringBuffer sb = new StringBuffer();
+////            String line;
+////            while((line = br.readLine()) != null)
+////            {
+////                // ajoute la ligne au buffer
+////                sb.append(line);
+////                sb.append("\n");
+////            }
+////            fr.close();
+////            System.out.println("Contenu du fichier: ");
+////            System.out.println(sb.toString());
+////        }
+//        catch(IOException e)
+//        {
+//            e.printStackTrace();
+//        }
 
-
-
-
-}
+//    }
+//}

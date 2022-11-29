@@ -1,8 +1,12 @@
 package g58132.atlg3.boulderdash.model;
 
-public class Diamond extends Tiles{
+public class Diamond extends Mobile{
+    public Diamond() {
+        super(true);
+    }
 
-    public Diamond(Position position) {
-        super(position);
+    @Override
+    public String toString() {
+        return "Diamond";
     }
 }

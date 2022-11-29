@@ -1,8 +1,8 @@
 package g58132.atlg3.boulderdash.model;
 
-public class Wall extends Immovable {
+public class Soil extends Immovable {
     @Override
     public String toString() {
-        return "Wall";
+        return "Soil";
     }
 }

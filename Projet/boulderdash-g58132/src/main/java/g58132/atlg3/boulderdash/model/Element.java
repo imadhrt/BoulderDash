@@ -1,15 +1,17 @@
 package g58132.atlg3.boulderdash.model;
 
 public class Element {
-    private Position position;
-
-
-    public Element(Position position) {
-        this.position = position;
+    private Element element;
+    public Element() {
+        element=null;
 
     }
 
-    public Position getPosition() {
-        return position;
+    public Element(Element element) {
+        this.element = element;
+    }
+
+    public Element getElement() {
+        return element;
     }
 }

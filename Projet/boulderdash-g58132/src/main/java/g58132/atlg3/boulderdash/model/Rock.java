@@ -1,9 +1,12 @@
 package g58132.atlg3.boulderdash.model;
 
-public class Rock extends Tiles{
+public class Rock extends Mobile{
+    public Rock() {
+        super(true);
+    }
 
-
-    public Rock(Position position) {
-        super(position);
+    @Override
+    public String toString() {
+        return "Rock";
     }
 }
