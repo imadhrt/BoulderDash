@@ -48,7 +48,7 @@ public class BmrOutput extends GridPane {
             alert.setContentText("Vous devez encoder une valeur strictement supérieur à zéro.");
             alert.showAndWait();
         }
-        if(bmr==-1){
+        if(bmr==-1){ // faire une autre méthode: setErrorMessage(..)
             bmrIn.setText("FAILED");
             bmrIn.setStyle("-fx-text-fill: red;");
             calorieIn.setText("FAILED");

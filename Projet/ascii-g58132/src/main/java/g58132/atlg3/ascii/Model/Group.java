@@ -7,9 +7,9 @@ import java.util.Objects;
 public class Group extends ColoredShape{
     private List<Shape> shapes;
 
-    public Group(char color,List<Shape> shapes1) {
+    public Group(char color,List<Shape> shapes) {
         super(color);
-        this.shapes = shapes1;
+        this.shapes = shapes;
 
     }
 
@@ -29,8 +29,6 @@ public class Group extends ColoredShape{
         for (var shape:shapes){
              shape.move(dx,dy);
         }
-
-
     }
 
 
@@ -41,9 +39,9 @@ public class Group extends ColoredShape{
                 '}';
     }
 
-    public List<Shape> getShapes() {
+    List<Shape> getShapes() {
         return shapes;
-    }
+    } // faire une copie
 
     public int shapePos(Shape shape){
         for (int i=0;i<shapes.size();i++){

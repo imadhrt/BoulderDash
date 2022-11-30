@@ -27,6 +27,15 @@ public class BmrView extends Application  implements Observer {
 
     @Override
     public void start(Stage primaryStage) {
+
+
+         /*
+         initMenu();
+         initMainPane();
+         initButtons();
+
+
+          */
         primaryStage.setTitle("Calcul du BMR");
         VBox vbox=new VBox();
         HBox hbox=new HBox();
@@ -85,6 +94,7 @@ exit.setOnAction(actionEvent -> {
     @Override
     public void update() {
 
+        // if error --> errorMessage; sinon ...
         result.setBmr(person.getBmr());
         result.setCal(person.getCal());
 

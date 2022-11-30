@@ -6,9 +6,9 @@ public class ChangeColorCommand implements  Command{
 
     private Shape shape;
 
-    public ChangeColorCommand(char newColor, char oldColor, Shape shape) {
+    public ChangeColorCommand(char newColor, Shape shape) {
         this.newColor = newColor;
-        this.oldColor = oldColor;
+        this.oldColor = shape.getColor();
         this.shape = shape;
     }
 

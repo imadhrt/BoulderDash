@@ -108,8 +108,7 @@ public class Person implements Observable {
        observers.remove(observer);
     }
 
-    @Override
-    public void notifyObservers() {
+    private void notifyObservers() {
         for (var observe:observers) {
              observe.update();
         }

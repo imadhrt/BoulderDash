@@ -13,9 +13,5 @@ public interface Observable {
      */
     void removeObserver(Observer observer);
 
-    /**
-     * Notifies all observers by calling their 'update' method.
-     */
-    void notifyObservers();
 
 }

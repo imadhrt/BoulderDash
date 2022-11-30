@@ -154,7 +154,7 @@ managerCommand.redo();
 
     public void  newColor( int pos,char newColor){
 
-        var command=new ChangeColorCommand(newColor,drawing.getShapeAtIndex(pos).getColor(), drawing.getShapeAtIndex(pos));
+        var command=new ChangeColorCommand(newColor, drawing.getShapeAtIndex(pos));
         managerCommand.addAllCommand(command);
     }
 

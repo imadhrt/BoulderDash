@@ -66,7 +66,7 @@ public class Application {
         boolean isGameOver = false;
 
 
-        while (!isGameOver) {
+        while (!isGameOver) { // https://www.tutorialspoint.com/javaregex/javaregex_capturing_groups.htm
             try {
                 view.enterCommand();
                 command = keyboard.nextLine().toLowerCase();
