@@ -4,7 +4,7 @@ public class Level {
 private int height;
 private int width;
 private int nombreDiamantARecolté;
-private int time;
+//private int time;
 
     public int getHeight() {
         return height;
@@ -29,12 +29,12 @@ private int time;
     public void setNombreDiamantARecolté(int nombreDiamantARecolté) {
         this.nombreDiamantARecolté = nombreDiamantARecolté;
     }
-
-    public int getTime() {
-        return time;
-    }
-
-    public void setTime(int time) {
-        this.time = time;
-    }
+//
+//    public int getTime() {
+//        return time;
+//    }
+//
+//    public void setTime(int time) {
+//        this.time = time;
+//    }
 }
