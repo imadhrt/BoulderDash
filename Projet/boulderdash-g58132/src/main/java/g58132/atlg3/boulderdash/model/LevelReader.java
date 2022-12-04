@@ -3,79 +3,120 @@ package g58132.atlg3.boulderdash.model;
 import g58132.atlg3.boulderdash.view.ViewConsole;
 
 import java.io.*;
+import java.nio.charset.MalformedInputException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+
+import static java.lang.System.in;
 
 public class LevelReader {
 
-private Level level;
+private Level level=new Level();
+
+    /**
+     * Accessor of the level
+     *
+     * @return the level
+     */
+    public Level getLevel() {
+        return level;
+    }
+
+    /**
+     * Allows of the browse the file and retrieve data
+     *
+     * @param file the name of the file which there are the level
+     */
+    public void browseLevel(String file){
+        int width = 0;
+        int height=0;
+        int numberDiamond=0;
+        int time;
+        Board board;
+        try (var in = new FileInputStream("src/main/java/g58132/atlg3/boulderdash/level/"+file)){
+            var isr = new InputStreamReader(in);
+            var br = new BufferedReader(isr);
+            int c=0;
+            int v=0;//recoit  un entier ascii
 
 
-    public void parcourirLevel(String texte,Element[][] board){
-        try {
+            numberDiamond = Integer.valueOf(br.readLine());
+            time = Integer.valueOf(br.readLine());
 
-
-            // Le fichier d'entrée
-            File file = new File(texte);
-            // Créer l'objet File Reader
-            FileReader fr = new FileReader(file);
-            // Créer l'objet BufferedReader
-            BufferedReader br = new BufferedReader(fr);
-            String shearchNumberDiamand="";
-            int c = 0;
-            int row=0;
-            int column=0;
-            // Lire caractère par caractère
-            while ((c = br.read()) != -1) {
-                // convertir l'entier en char
-                char ch = (char) c;
-
-                switch (ch){
-                    case 'w':
-                        board[row][column]=new Wall();
-                        column++;
-                        break;
-                    case 's':
-                        board[row][column]=new Soil();
-                        column++;
-                        break;
-                    case 'd':
-                        board[row][column]=new Diamond();
-                        column++;
-                        break;
-                    case ' ':
-                        board[row][column]=null;
-                        column++;
-                        break;
-                    case 'i':
-                        board[row][column]=new Rockford();
-                        column++;
-                        break;
-                    case 'r':
-                        board[row][column]=new Rock();
-                        column++;
-                        break;
-                    case '\n':
-                        if (column!=0) {
-                            row++;
-                            column = 0;
-                        }
-                        break;
+            while(( v=br.read()) != -1){
+                boolean b = (char)(v) == '\n';
+                boolean r= (char)(v) == '\r';
+                if(b) {
+                    c++;
                 }
-                if(row==0 && column==0){
-                    shearchNumberDiamand+=ch;
+                else {
+                    if(!r){
+                        width++;
+                    }
                 }
+
+
 
             }
-//            level.setHeight(board.length);
-//            level.setWidth(board[0].length);
-//            level.setNombreDiamantARecolté(Integer.parseInt(shearchNumberDiamand));
+            width=width/c;
+
+            height = c;
+            System.out.println(height);
+            System.out.println(width);
+            board = new Board(height, width);
 
 
-        }catch (IOException e) {
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        try (var begin = new FileInputStream("src/main/java/g58132/atlg3/boulderdash/level/"+file)){
+
+            var inputStreamReader = new InputStreamReader(begin);
+            var bufferedReader = new BufferedReader(inputStreamReader);
+            bufferedReader.readLine();
+            bufferedReader.readLine();
+            for (int i = 0; i < height; i++) {
+                String line = bufferedReader.readLine();
+                for (int j = 0; j < width; j++) {
+
+                    char ch = line.charAt(j);//recupere caractère par caractère d'une ligne
+                    switch (ch) {
+                        case 'w':
+                            board.setElement(new Wall(),new Position(i,j));
+                            break;
+                        case 's':
+                            board.setElement(new Soil(),new Position(i,j));
+                            break;
+                        case 'd':
+                            board.setElement(new Diamond(),new Position(i,j));
+                            break;
+                        case ' ':
+                            board.setElement(null,new Position(i,j));
+                            break;
+                        case 'i':
+                            board.setElement(new Rockford(),new Position(i,j));
+                            break;
+                        case 'r':
+                            board.setElement(new Rock(),new Position(i,j));
+                            break;
+
+
+                    }}
+                level.setnumberDiamondcollect(numberDiamond);
+                level.setTime(time);
+                level.setBoard(board);
+
+
+
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
@@ -83,11 +124,45 @@ private Level level;
 
 
     public static void main(String[] args) {
-    Board board=new Board(100,100);
-    LevelReader lvl=new LevelReader();
-    lvl.parcourirLevel("Z:\\ATLG3\\58132-El-Harrouti\\Projet\\boulderdash-g58132\\src\\main\\java\\g58132\\atlg3\\boulderdash\\level\\level1",board.getBoard());
+        Scanner clavier=new Scanner(System.in);
+        LevelReader level=new LevelReader();
+        level.browseLevel("level1");
         ViewConsole view=new ViewConsole();
-        view.displayBoard(board.getBoard());
-    }
 
-}
+        boolean a=true;
+        String entre;
+
+        while(a){
+            view.displayBoard(level.getLevel().getBoard().getBoard());
+            System.out.println("Entrez direction:");
+            entre=clavier.nextLine();
+            Direction pos=null;
+            switch (entre){
+                case "up":
+                    pos=Direction.UP;
+                    break;
+                case "down":
+                    pos=Direction.DOWN;
+                    break;
+                case "left":
+                    pos=Direction.LEFT;
+                    break;
+                case "right":
+                    pos=Direction.RIGHT;
+                    break;
+                case "exit":
+                    a=false;
+            }
+            level.getLevel().getBoard().movePlayer(pos);
+
+        }
+
+
+        }
+        }
+
+
+
+
+
+
