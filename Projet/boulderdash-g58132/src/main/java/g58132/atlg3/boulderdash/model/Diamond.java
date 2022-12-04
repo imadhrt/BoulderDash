@@ -1,6 +1,6 @@
 package g58132.atlg3.boulderdash.model;
 
-public class Diamond extends Mobile{
+public class Diamond extends Mobile {
     /**
      * Constructor of the diamond
      */

@@ -5,7 +5,7 @@ public class Rockford extends Mobile {
      * Constructor of the rockFord
      */
     public Rockford() {
-        super(true);
+        super();
     }
 
     @Override

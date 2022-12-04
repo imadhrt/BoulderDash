@@ -8,12 +8,13 @@ public class Element {
      **/
 
     public Element() {
-        element=null;
+        element = null;
 
     }
 
     /**
      * Constructor of the element
+     *
      * @param element is an element that we will put on the board
      */
     public Element(Element element) {
@@ -22,7 +23,7 @@ public class Element {
 
     /**
      * Accessor of element
-     *
+     * <p>
      * Allows access to the value of the element attribute.
      *
      * @return an element

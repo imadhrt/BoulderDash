@@ -24,13 +24,25 @@ public class Board {
 
     /**
      * Accessor of board
-     *
+     * <p>
      * Allows access to the value of the board attribute.
      *
      * @return an array of element
      */
     public Element[][] getBoard() {
         return board;
+    }
+
+    /**
+     * @param position
+     * @return
+     */
+    public Element getElement(Position position) {
+        if (!containsBoard(position)) {
+            throw new IllegalArgumentException("La position n' est pas dans le board");
+        }
+
+        return board[position.getRow()][position.getColumn()].getElement();
     }
 
     /**
@@ -53,7 +65,7 @@ public class Board {
      * Allows to place the element at the position on the board
      *
      * @param element is an element that we put on the board
-     * @param pos is a position
+     * @param pos     is a position
      * @throw pos if the position is not on the board
      */
     public void setElement(Element element, Position pos) {
@@ -75,7 +87,7 @@ public class Board {
         if (!containsBoard(pos)) {
             throw new IllegalArgumentException("La position n' est pas dans le board");
         }
-        return !(this.board[pos.getRow()][pos.getColumn()] instanceof Wall) && !(this.board[pos.getRow()][pos.getColumn()] instanceof Rock);
+        return !(this.board[pos.getRow()][pos.getColumn()].getElement() instanceof Wall) && !(this.board[pos.getRow()][pos.getColumn()].getElement() instanceof Rock);
     }
 
     /**
@@ -92,8 +104,9 @@ public class Board {
 
     /**
      * allows the player's position to be known
+     * <p>
+     * //     * @param player is a Rockford
      *
-//     * @param player is a Rockford
      * @return the position of the player if he found otherwhise null
      */
     public Position getPositionOfPlayer() {
@@ -107,31 +120,37 @@ public class Board {
         }
         return null;
     }
-    public Element getPlayer() {
 
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[0].length; j++) {
-                if (board[i][j].getElement() instanceof Rockford) {
-                    return board[i][j].getElement();
-                }
-            }
+    public boolean isPushRock(Position position, Position position2) {
+        if (!containsBoard(position) || !containsBoard(position2)) {
+            throw new IllegalArgumentException("La position n' est pas dans le board");
         }
-        return null;
+        return this.board[position.getRow()][position.getColumn()].getElement() instanceof Rock && this.board[position2.getRow()][position2.getColumn()].getElement() == null;
     }
-    public void movePlayer(Direction direction){
-        var oldpos=getPositionOfPlayer();
-        var newPos=getPositionOfPlayer().next(direction);
-
-        if(isValideMove(newPos)){
-            dropElement(newPos);
-            setElement(getPlayer(),newPos);
-            dropElement(oldpos);
-        }
-    }
+//    public Element getPlayer() {
+//
+//        for (int i = 0; i < board.length; i++) {
+//            for (int j = 0; j < board[0].length; j++) {
+//                if (board[i][j].getElement() instanceof Rockford) {
+//                    return board[i][j].getElement();
+//                }
+//            }
+//        }
+//        return null;
+//    }
+//    public void movePlayer(Direction direction){
+//        var oldpos=getPositionOfPlayer();
+//        var newPos=getPositionOfPlayer().next(direction);
+//
+//        if(isValideMove(newPos)){
+//            dropElement(newPos);
+//            setElement(getPlayer(),newPos);
+//            dropElement(oldpos);
+//        }
+//    }
 
     /**
      * Equals
-     *
      * Allows to compare if the two objects are equals.
      *
      * @param o is an object
