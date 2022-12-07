@@ -1,6 +1,8 @@
 package g58132.atlg3.boulderdash.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class Board {
     private Element[][] board;
@@ -127,6 +129,40 @@ public class Board {
         }
         return getElement(position) instanceof Rock && getElement(position2)== null;
     }
+
+    public List<Position>  getAllDiamond(){
+        List<Position> liste=new ArrayList();
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                if (getElement(new Position(i,j)) instanceof Diamond) {
+                    liste.add(new Position(i,j));
+                }
+            }
+        }
+        return liste;
+    }
+
+    public List<Position> getAllRock(){
+        List<Position> liste=new ArrayList();
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                if (getElement(new Position(i,j)) instanceof Rock) {
+                    liste.add(new Position(i,j));
+                }
+            }
+        }
+        return liste;
+    }
+
+    public boolean isCheckFallDown(Position position) {
+        if (!containsBoard(position) || !containsBoard(position.next(Direction.DOWN))) {
+            throw new IllegalArgumentException("La position n' est pas dans le board");
+        }
+        return getElement(position.next(Direction.DOWN)) == null;
+    }
+
+
+
 //    public Element getPlayer() {
 //
 //        for (int i = 0; i < board.length; i++) {

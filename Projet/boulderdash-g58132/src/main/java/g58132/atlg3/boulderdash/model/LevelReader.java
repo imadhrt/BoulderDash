@@ -130,7 +130,7 @@ public class LevelReader {
         String entre;
 
         while (a) {
-            System.out.println("nombre de diamant récolté :" + game.getNbDiamond());
+            System.out.println("nombre de diamant récolté :" + game.getRockford().getNbDiamand());
             view.displayBoard(level.getLevel().getBoard().getBoard());
             System.out.println("Entrez direction:");
             entre = clavier.nextLine();
