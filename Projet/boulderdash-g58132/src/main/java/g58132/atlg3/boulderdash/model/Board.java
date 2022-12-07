@@ -87,7 +87,7 @@ public class Board {
         if (!containsBoard(pos)) {
             throw new IllegalArgumentException("La position n' est pas dans le board");
         }
-        return !(this.board[pos.getRow()][pos.getColumn()].getElement() instanceof Wall) && !(this.board[pos.getRow()][pos.getColumn()].getElement() instanceof Rock);
+        return !(getElement(pos) instanceof Wall) && !(getElement(pos) instanceof Rock);
     }
 
     /**
@@ -113,7 +113,7 @@ public class Board {
 
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
-                if (board[i][j].getElement() instanceof Rockford) {
+                if (getElement(new Position(i,j)) instanceof Rockford) {
                     return new Position(i, j);
                 }
             }
@@ -125,7 +125,7 @@ public class Board {
         if (!containsBoard(position) || !containsBoard(position2)) {
             throw new IllegalArgumentException("La position n' est pas dans le board");
         }
-        return this.board[position.getRow()][position.getColumn()].getElement() instanceof Rock && this.board[position2.getRow()][position2.getColumn()].getElement() == null;
+        return getElement(position) instanceof Rock && getElement(position2)== null;
     }
 //    public Element getPlayer() {
 //
