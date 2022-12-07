@@ -1,5 +1,5 @@
 package g58132.atlg3.boulderdash.model;
 
-public class Immovable extends Element{
+public abstract class Immovable extends Element {
 
 }

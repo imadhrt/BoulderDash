@@ -13,7 +13,7 @@ public enum Direction {
 
     /**
      * Constructor of Direction
-     * <p>
+     *
      * Allows to initialize the deltadeltaRow and deltadeltaColumn attributes to values.
      *
      * @param deltaRow    is a deltaRow in the board
@@ -28,7 +28,7 @@ public enum Direction {
 
     /**
      * Accessory of deltaRow
-     * <p>
+     *
      * Allows access to the value of the deltaRow attribute.
      *
      * @return the value of the deltaRow attribute
@@ -41,7 +41,7 @@ public enum Direction {
 
     /**
      * Accessory of deltaColumn
-     * <p>
+     *
      * Allows access to the value of the deltaColumn attribute.
      *
      * @return the value of the deltaColumn attribute

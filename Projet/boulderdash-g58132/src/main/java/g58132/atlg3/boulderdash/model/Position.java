@@ -10,7 +10,7 @@ public class Position {
      *
      * Allows to initialize the row and column attributes to values.
      *
-     * @param row is a position on the board
+     * @param row    is a position on the board
      * @param column is a position on the board
      */
     public Position(int row, int column) {
@@ -44,7 +44,6 @@ public class Position {
      * New position of the piece
      *
      * @param direction is the direction of the piece
-     *
      * @return a new position on the board
      */
     public Position next(Direction direction) {

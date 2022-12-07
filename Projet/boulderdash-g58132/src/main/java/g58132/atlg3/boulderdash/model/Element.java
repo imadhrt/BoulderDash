@@ -23,7 +23,6 @@ public class Element {
 
     /**
      * Accessor of element
-     * <p>
      * Allows access to the value of the element attribute.
      *
      * @return an element

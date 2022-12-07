@@ -37,8 +37,10 @@ public class Board {
     }
 
     /**
-     * @param position
-     * @return
+     * Allows access to an element of the board
+     *
+     * @param position is a position
+     * @return an element du board
      */
     public Element getElement(Position position) {
         if (!containsBoard(position)) {
@@ -107,54 +109,76 @@ public class Board {
 
     /**
      * allows the player's position to be known
-     * <p>
-     * //     * @param player is a Rockford
      *
      * @return the position of the player if he found otherwhise null
      */
-    private  Position getPositionOfPlayer() {
+    private Position getPositionOfPlayer() {
 
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
-                if (getElement(new Position(i,j)) instanceof Rockford) {
+                if (getElement(new Position(i, j)) instanceof Rockford) {
                     return new Position(i, j);
                 }
             }
         }
         return null;
     }
-    public Rockford getRockford(){
-        if(getPositionOfPlayer()==null){
-            throw new IllegalArgumentException("Le rockFord n'est pas sur le board");
-        }
+
+    /**
+     * Get RockFord
+     *
+     * @return the RockFord from the board
+     */
+    public Rockford getRockford() {
+//        if(getPositionOfPlayer()==null){
+//            throw new IllegalArgumentException("Le rockFord n'est pas sur le board");
+//        }
         return (Rockford) getElement(getPositionOfPlayer());
     }
 
+    /**
+     * Allows to check if the player can push a rock
+     *
+     * @param position  is a position where there are the rock
+     * @param position2 is a position where there are empty
+     * @return true if the player can push the rock otherwhise false
+     * @throw pos if the position is not on the board
+     */
     private boolean isPushRock(Position position, Position position2) {
         if (!containsBoard(position) || !containsBoard(position2)) {
             throw new IllegalArgumentException("La position n' est pas dans le board");
         }
-        return getElement(position) instanceof Rock && getElement(position2)== null;
+        return getElement(position) instanceof Rock && getElement(position2) == null;
     }
 
-    private List<Position>  getAllDiamond(){
-        List<Position> liste=new ArrayList();
+    /**
+     * Get all diamonds of the level
+     *
+     * @return all diamond positions of a board
+     */
+    private List<Position> getAllDiamond() {
+        List<Position> liste = new ArrayList();
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
-                if (getElement(new Position(i,j)) instanceof Diamond ) {
-                    liste.add(new Position(i,j));
+                if (getElement(new Position(i, j)) instanceof Diamond) {
+                    liste.add(new Position(i, j));
                 }
             }
         }
         return liste;
     }
 
-    private List<Position> getAllRock(){
-        List<Position> liste=new ArrayList();
+    /**
+     * Get all rocks of the level
+     *
+     * @return all rocks positions of a board
+     */
+    private List<Position> getAllRock() {
+        List<Position> liste = new ArrayList();
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
-                if (getElement(new Position(i,j)) instanceof Rock) {
-                    liste.add(new Position(i,j));
+                if (getElement(new Position(i, j)) instanceof Rock) {
+                    liste.add(new Position(i, j));
                 }
 
             }
@@ -162,25 +186,41 @@ public class Board {
         return liste;
     }
 
-
+    /**
+     * Allows to check if the element can fall
+     *
+     * @param position is a position
+     * @return true if an element at a given position is empty
+     * @throw pos if the position is not on the board
+     */
     private boolean isCheckFallDown(Position position) {
         if (!containsBoard(position) || !containsBoard(position.next(Direction.DOWN))) {
             throw new IllegalArgumentException("La position n' est pas dans le board");
         }
         return getElement(position.next(Direction.DOWN)) == null;
     }
+
+    /**
+     * Allows to move the player,failing the diamonds or rocks,increase the number of
+     * diamonds collected
+     *
+     * @param direction is a direction in which the player wants to move
+     */
     public void movePosition(Direction direction) {
 
         var oldpos = getPositionOfPlayer();
+        if (!containsBoard(oldpos)) {
+            throw new IllegalArgumentException("La position n' est pas dans le board");
+        }
         var newPos = oldpos.next(direction);
-        if(!containsBoard(oldpos) || !containsBoard(newPos)) {
+        if (!containsBoard(newPos)) {
             throw new IllegalArgumentException("La position n' est pas dans le board");
         }
 
 
         // la logique dans Board ?
         if (getElement(newPos) instanceof Diamond) {
-            getRockford().setNbDiamand(getRockford().getNbDiamand()+1);
+            getRockford().setNbDiamand(getRockford().getNbDiamand() + 1);
         }
 
         if (isValideMove(newPos)) {
@@ -194,12 +234,49 @@ public class Board {
             dropElement(oldpos);
         }
 
-        for(int i=getAllRock().size()-1;i>=0;i--) {
-             while(isCheckFallDown(getAllRock().get(i))){
-        //         board.setElement(board.getElement(board.getAllRock().get(i)), board.getAllRock().get(i).next(Direction.DOWN));
-//                board.dropElement(board.getAllRock().get(i));
-                 setElement(getElement(getAllRock().get(i)),getAllRock().get(i).next(Direction.DOWN));
-             }
+        for (int i = getAllRock().size() - 1; i >= 0; i--) {
+            var pos = getAllRock().get(i);
+            if (getElement(pos.next(Direction.RIGHT)) == null && getElement(pos.next(Direction.DOWN)) instanceof Rock && getElement(pos.next(Direction.RIGHT).next(Direction.DOWN)) == null) {
+                setElement(getElement(pos), pos.next(Direction.RIGHT));
+                dropElement(pos);
+                pos = pos.next(Direction.RIGHT);
+            } else if (getElement(pos.next(Direction.LEFT)) == null && getElement(pos.next(Direction.DOWN)) instanceof Rock && getElement(pos.next(Direction.LEFT).next(Direction.DOWN)) == null) {
+                setElement(getElement(pos), pos.next(Direction.LEFT));
+                dropElement(pos);
+                pos = pos.next(Direction.LEFT);
+            }
+            while (isCheckFallDown(pos)) {
+                setElement(getElement(pos), pos.next(Direction.DOWN));
+                dropElement(pos);
+                pos = pos.next(Direction.DOWN);
+            }
+            if (getElement(pos.next(Direction.DOWN)) instanceof Rockford) {
+                setElement(null, pos.next(Direction.DOWN));
+                System.out.println("player manger");
+
+            }
+        }
+        for (int i = getAllDiamond().size() - 1; i >= 0; i--) {
+            var pos = getAllDiamond().get(i);
+            if (getElement(pos.next(Direction.RIGHT)) == null && getElement(pos.next(Direction.DOWN)) instanceof Rock && getElement(pos.next(Direction.RIGHT).next(Direction.DOWN)) == null) {//verifier si peut tomber à droite
+                setElement(getElement(pos), pos.next(Direction.RIGHT));
+                dropElement(pos);
+                pos = pos.next(Direction.RIGHT);
+            } else if (getElement(pos.next(Direction.LEFT)) == null && getElement(pos.next(Direction.DOWN)) instanceof Rock && getElement(pos.next(Direction.LEFT).next(Direction.DOWN)) == null) {//verifier si peut tomber à gauche
+                setElement(getElement(pos), pos.next(Direction.LEFT));
+                dropElement(pos);
+                pos = pos.next(Direction.LEFT);
+            }
+            while (isCheckFallDown(pos)) {//tan qu'il peut tomber vers le bas il tombe
+                setElement(getElement(pos), pos.next(Direction.DOWN));
+                dropElement(pos);
+                pos = pos.next(Direction.DOWN);
+            }
+            if (getElement(pos.next(Direction.DOWN)) instanceof Rockford) {//si il y a un rockford en bas du pierre apres que le rocher ait bougé alors le player est mort
+                setElement(null, pos.next(Direction.DOWN));
+                System.out.println("player manger");
+
+            }
         }
 
 

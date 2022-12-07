@@ -28,6 +28,7 @@ public class Level {
     public void setnumberDiamondcollect(int numberDiamondcollect) {
         this.numberDiamondcollect = numberDiamondcollect;
     }
+
     /**
      * Accessor of time
      *
@@ -38,6 +39,7 @@ public class Level {
     public int getTime() {
         return time;
     }
+
     /**
      * Mutator of time
      *
