@@ -130,7 +130,7 @@ public class LevelReader {
         String entre;
 
         while (a) {
-            System.out.println("nombre de diamant récolté :" + game.getRockford().getNbDiamand());
+            System.out.println("nombre de diamant récolté :" + game.getLevel().getLevel().getBoard().getRockford().getNbDiamand());
             view.displayBoard(level.getLevel().getBoard().getBoard());
             System.out.println("Entrez direction:");
             entre = clavier.nextLine();
@@ -153,7 +153,7 @@ public class LevelReader {
             }
             try {
                 if (pos != null) {
-                    game.movePosition(pos);
+                    level.getLevel().getBoard().movePosition(pos);
                 }
             } catch (IllegalArgumentException e) {
                 System.out.println(e.getMessage());

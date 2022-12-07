@@ -22,6 +22,7 @@ public class Board {
                 board[i][j] = new Element();
             }
         }
+
     }
 
     /**
@@ -85,7 +86,7 @@ public class Board {
      * @throw pos if the position is not on the board
      */
 
-    public boolean isValideMove(Position pos) {
+    private boolean isValideMove(Position pos) {
         if (!containsBoard(pos)) {
             throw new IllegalArgumentException("La position n' est pas dans le board");
         }
@@ -111,7 +112,7 @@ public class Board {
      *
      * @return the position of the player if he found otherwhise null
      */
-    public Position getPositionOfPlayer() {
+    private  Position getPositionOfPlayer() {
 
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
@@ -122,19 +123,25 @@ public class Board {
         }
         return null;
     }
+    public Rockford getRockford(){
+        if(getPositionOfPlayer()==null){
+            throw new IllegalArgumentException("Le rockFord n'est pas sur le board");
+        }
+        return (Rockford) getElement(getPositionOfPlayer());
+    }
 
-    public boolean isPushRock(Position position, Position position2) {
+    private boolean isPushRock(Position position, Position position2) {
         if (!containsBoard(position) || !containsBoard(position2)) {
             throw new IllegalArgumentException("La position n' est pas dans le board");
         }
         return getElement(position) instanceof Rock && getElement(position2)== null;
     }
 
-    public List<Position>  getAllDiamond(){
+    private List<Position>  getAllDiamond(){
         List<Position> liste=new ArrayList();
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
-                if (getElement(new Position(i,j)) instanceof Diamond) {
+                if (getElement(new Position(i,j)) instanceof Diamond ) {
                     liste.add(new Position(i,j));
                 }
             }
@@ -142,48 +149,68 @@ public class Board {
         return liste;
     }
 
-    public List<Position> getAllRock(){
+    private List<Position> getAllRock(){
         List<Position> liste=new ArrayList();
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
                 if (getElement(new Position(i,j)) instanceof Rock) {
                     liste.add(new Position(i,j));
                 }
+
             }
         }
         return liste;
     }
 
-    public boolean isCheckFallDown(Position position) {
+
+    private boolean isCheckFallDown(Position position) {
         if (!containsBoard(position) || !containsBoard(position.next(Direction.DOWN))) {
             throw new IllegalArgumentException("La position n' est pas dans le board");
         }
         return getElement(position.next(Direction.DOWN)) == null;
     }
+    public void movePosition(Direction direction) {
+
+        var oldpos = getPositionOfPlayer();
+        var newPos = oldpos.next(direction);
+        if(!containsBoard(oldpos) || !containsBoard(newPos)) {
+            throw new IllegalArgumentException("La position n' est pas dans le board");
+        }
 
 
+        // la logique dans Board ?
+        if (getElement(newPos) instanceof Diamond) {
+            getRockford().setNbDiamand(getRockford().getNbDiamand()+1);
+        }
 
-//    public Element getPlayer() {
-//
-//        for (int i = 0; i < board.length; i++) {
-//            for (int j = 0; j < board[0].length; j++) {
-//                if (board[i][j].getElement() instanceof Rockford) {
-//                    return board[i][j].getElement();
-//                }
-//            }
+        if (isValideMove(newPos)) {
+            dropElement(newPos);
+            setElement(getElement(oldpos), newPos);
+            dropElement(oldpos);
+        } else if (isPushRock(newPos, newPos.next(direction))) {
+            setElement(getElement(newPos), newPos.next(direction));
+            dropElement(newPos);
+            setElement(getElement(oldpos), newPos);
+            dropElement(oldpos);
+        }
+
+        for(int i=getAllRock().size()-1;i>=0;i--) {
+             while(isCheckFallDown(getAllRock().get(i))){
+        //         board.setElement(board.getElement(board.getAllRock().get(i)), board.getAllRock().get(i).next(Direction.DOWN));
+//                board.dropElement(board.getAllRock().get(i));
+                 setElement(getElement(getAllRock().get(i)),getAllRock().get(i).next(Direction.DOWN));
+             }
+        }
+
+
+//        if (rockford.getNbDiamand() >= level.getLevel().getnumberDiamondcollect()) {
+//            rockford.setNbDiamand(0);
+//            level.browseLevel(1);
 //        }
-//        return null;
-//    }
-//    public void movePlayer(Direction direction){
-//        var oldpos=getPositionOfPlayer();
-//        var newPos=getPositionOfPlayer().next(direction);
-//
-//        if(isValideMove(newPos)){
-//            dropElement(newPos);
-//            setElement(getPlayer(),newPos);
-//            dropElement(oldpos);
-//        }
-//    }
+
+
+    }
+
 
     /**
      * Equals
