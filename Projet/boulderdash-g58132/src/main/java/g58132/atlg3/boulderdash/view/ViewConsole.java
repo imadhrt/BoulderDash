@@ -19,6 +19,8 @@ public class ViewConsole {
                     System.out.print("\u001B[31m" + "i" + "\u001B[0m");
                 } else if (board[i][j].getElement() instanceof Rock) {
                     System.out.print("\u001B[38m" + "r" + "\u001B[0m");
+                } else if (board[i][j].getElement() instanceof Exit) {
+                    System.out.print("\033[0;35m"+"e"+"\u001B[0m");
                 }
             }
             System.out.println();

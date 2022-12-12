@@ -21,6 +21,9 @@ public abstract class Mobile extends Element {
     public Mobile(boolean isFall) {
         this.isFall = isFall;
     }
+    public void setElement(Element element){
+        super.setElement(element);
+    }
 
     /**
      * Accessor of the isFall

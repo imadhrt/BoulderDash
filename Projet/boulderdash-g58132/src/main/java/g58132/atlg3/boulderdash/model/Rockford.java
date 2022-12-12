@@ -11,6 +11,7 @@ public class Rockford extends Mobile {
         nbDiamand = 0;
     }
 
+
     /**
      * Accessor of the diamond
      *

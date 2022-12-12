@@ -8,6 +8,7 @@ public class Diamond extends Mobile {
         super(true);
     }
 
+
     @Override
     public String toString() {
         return "Diamond";

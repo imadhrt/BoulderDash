@@ -130,9 +130,9 @@ public class Board {
      * @return the RockFord from the board
      */
     public Rockford getRockford() {
-//        if(getPositionOfPlayer()==null){
-//            throw new IllegalArgumentException("Le rockFord n'est pas sur le board");
-//        }
+        if(getPositionOfPlayer()==null){
+           return null;
+        }
         return (Rockford) getElement(getPositionOfPlayer());
     }
 
@@ -150,6 +150,18 @@ public class Board {
         }
         return getElement(position) instanceof Rock && getElement(position2) == null;
     }
+    public List<Position> getAllRockOrDiamond(){
+        List<Position> liste = new ArrayList();
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+                if ((getElement(new Position(i, j)) instanceof Rock)||(getElement(new Position(i, j)) instanceof Diamond)) {
+                    liste.add(new Position(i, j));
+                }
+            }
+        }
+        return liste;
+    }
+
 
     /**
      * Get all diamonds of the level
@@ -201,12 +213,12 @@ public class Board {
     }
 
     /**
-     * Allows to move the player,failing the diamonds or rocks,increase the number of
+     * Allows to move the player,increase the number of
      * diamonds collected
      *
      * @param direction is a direction in which the player wants to move
      */
-    public void movePosition(Direction direction) {
+    public void movePlayer(Direction direction) {
 
         var oldpos = getPositionOfPlayer();
         if (!containsBoard(oldpos)) {
@@ -221,70 +233,62 @@ public class Board {
         // la logique dans Board ?
         if (getElement(newPos) instanceof Diamond) {
             getRockford().setNbDiamand(getRockford().getNbDiamand() + 1);
+
         }
 
         if (isValideMove(newPos)) {
             dropElement(newPos);
             setElement(getElement(oldpos), newPos);
             dropElement(oldpos);
-        } else if (isPushRock(newPos, newPos.next(direction))) {
+
+        } else if ((direction==Direction.RIGHT || direction==Direction.LEFT)&&isPushRock(newPos, newPos.next(direction))) {
             setElement(getElement(newPos), newPos.next(direction));
             dropElement(newPos);
             setElement(getElement(oldpos), newPos);
             dropElement(oldpos);
         }
+    }
 
-        for (int i = getAllRock().size() - 1; i >= 0; i--) {
-            var pos = getAllRock().get(i);
-            if (getElement(pos.next(Direction.RIGHT)) == null && getElement(pos.next(Direction.DOWN)) instanceof Rock && getElement(pos.next(Direction.RIGHT).next(Direction.DOWN)) == null) {
-                setElement(getElement(pos), pos.next(Direction.RIGHT));
-                dropElement(pos);
-                pos = pos.next(Direction.RIGHT);
-            } else if (getElement(pos.next(Direction.LEFT)) == null && getElement(pos.next(Direction.DOWN)) instanceof Rock && getElement(pos.next(Direction.LEFT).next(Direction.DOWN)) == null) {
-                setElement(getElement(pos), pos.next(Direction.LEFT));
-                dropElement(pos);
-                pos = pos.next(Direction.LEFT);
-            }
+    /**
+     * Allows to fall the diamonds or rocks
+     */
+    public void moveDiamondOrRock(){
+        for (int i = getAllRockOrDiamond().size() - 1; i >= 0; i--) {
+            var pos = getAllRockOrDiamond().get(i);
             while (isCheckFallDown(pos)) {
                 setElement(getElement(pos), pos.next(Direction.DOWN));
                 dropElement(pos);
                 pos = pos.next(Direction.DOWN);
-            }
-            if (getElement(pos.next(Direction.DOWN)) instanceof Rockford) {
-                setElement(null, pos.next(Direction.DOWN));
-                System.out.println("player manger");
+                if (getElement(pos.next(Direction.DOWN)) instanceof Rockford) {
+                    setElement(null, pos.next(Direction.DOWN));
+                    System.out.println("player manger");
 
+                }
+            }
+            while ((getElement(pos.next(Direction.RIGHT)) == null && getElement(pos.next(Direction.DOWN)) instanceof Rock && getElement(pos.next(Direction.RIGHT).next(Direction.DOWN)) == null) ||
+                    (getElement(pos.next(Direction.LEFT)) == null && getElement(pos.next(Direction.DOWN)) instanceof Rock && getElement(pos.next(Direction.LEFT).next(Direction.DOWN)) == null)) {
+                if (getElement(pos.next(Direction.RIGHT)) == null && getElement(pos.next(Direction.DOWN)) instanceof Rock && getElement(pos.next(Direction.RIGHT).next(Direction.DOWN)) == null) {
+                    setElement(getElement(pos), pos.next(Direction.RIGHT));
+                    dropElement(pos);
+                    pos = pos.next(Direction.RIGHT);
+                }
+                else if (getElement(pos.next(Direction.LEFT)) == null && getElement(pos.next(Direction.DOWN)) instanceof Rock && getElement(pos.next(Direction.LEFT).next(Direction.DOWN)) == null) {
+                    setElement(getElement(pos), pos.next(Direction.LEFT));
+                    dropElement(pos);
+                    pos = pos.next(Direction.LEFT);
+                }
+                while (isCheckFallDown(pos)) {
+                    setElement(getElement(pos), pos.next(Direction.DOWN));
+                    dropElement(pos);
+                    pos = pos.next(Direction.DOWN);
+                if (getElement(pos.next(Direction.DOWN)) instanceof Rockford) {
+                    setElement(null, pos.next(Direction.DOWN));
+                    System.out.println("player manger");
+
+                }
+                }
             }
         }
-        for (int i = getAllDiamond().size() - 1; i >= 0; i--) {
-            var pos = getAllDiamond().get(i);
-            if (getElement(pos.next(Direction.RIGHT)) == null && getElement(pos.next(Direction.DOWN)) instanceof Rock && getElement(pos.next(Direction.RIGHT).next(Direction.DOWN)) == null) {//verifier si peut tomber à droite
-                setElement(getElement(pos), pos.next(Direction.RIGHT));
-                dropElement(pos);
-                pos = pos.next(Direction.RIGHT);
-            } else if (getElement(pos.next(Direction.LEFT)) == null && getElement(pos.next(Direction.DOWN)) instanceof Rock && getElement(pos.next(Direction.LEFT).next(Direction.DOWN)) == null) {//verifier si peut tomber à gauche
-                setElement(getElement(pos), pos.next(Direction.LEFT));
-                dropElement(pos);
-                pos = pos.next(Direction.LEFT);
-            }
-            while (isCheckFallDown(pos)) {//tan qu'il peut tomber vers le bas il tombe
-                setElement(getElement(pos), pos.next(Direction.DOWN));
-                dropElement(pos);
-                pos = pos.next(Direction.DOWN);
-            }
-            if (getElement(pos.next(Direction.DOWN)) instanceof Rockford) {//si il y a un rockford en bas du pierre apres que le rocher ait bougé alors le player est mort
-                setElement(null, pos.next(Direction.DOWN));
-                System.out.println("player manger");
-
-            }
-        }
-
-
-//        if (rockford.getNbDiamand() >= level.getLevel().getnumberDiamondcollect()) {
-//            rockford.setNbDiamand(0);
-//            level.browseLevel(1);
-//        }
-
 
     }
 

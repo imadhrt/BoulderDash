@@ -117,52 +117,6 @@ public class LevelReader {
     }
 
 
-    public static void main(String[] args) {
-        Scanner clavier = new Scanner(System.in);
-        LevelReader level = new LevelReader();
-        BoulderDash game = new BoulderDash(level);
-        level.browseLevel(0);
-        ViewConsole view = new ViewConsole();
-        view.displayStart();
-
-
-        boolean a = true;
-        String entre;
-
-        while (a) {
-//            System.out.println("nombre de diamant récolté :" + game.getLevel().getLevel().getBoard().getRockford().getNbDiamand());
-            view.displayBoard(level.getLevel().getBoard().getBoard());
-            System.out.println("Entrez direction:");
-            entre = clavier.nextLine();
-            Direction pos = null;
-            switch (entre) {
-                case "up":
-                    pos = Direction.UP;
-                    break;
-                case "down":
-                    pos = Direction.DOWN;
-                    break;
-                case "left":
-                    pos = Direction.LEFT;
-                    break;
-                case "right":
-                    pos = Direction.RIGHT;
-                    break;
-                case "exit":
-                    a = false;
-            }
-            try {
-                if (pos != null) {
-                    level.getLevel().getBoard().movePosition(pos);
-                }
-            } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
-            }
-        }
-        view.displayEnd();
-
-
-    }
 }
 
 
