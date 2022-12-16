@@ -55,7 +55,7 @@ public class BmrImput extends GridPane {
         for (Node n : this.getChildren()) {
             GridPane.setMargin(n, new Insets(10));
             n.addEventFilter(KeyEvent.KEY_TYPED, e -> {
-                if (!e.getCharacter().matches("[0-9]*")) {
+                if (!e.getCharacter().matches("[0-9]")) {
                     e.consume();
                 }
             });

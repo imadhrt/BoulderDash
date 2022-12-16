@@ -6,5 +6,5 @@ package g58132.atlg3.boulderdash.model;
  * @author elhar
  */
 public enum GameState {
-    PLAY, WIN, LOSE,EXIT;
+    PLAY, WIN, LOSE,EXIT,ALLWIN;
 }

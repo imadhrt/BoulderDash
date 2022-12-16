@@ -1,9 +1,10 @@
 package g58132.atlg3.boulderdash.view;
 
 import g58132.atlg3.boulderdash.model.*;
+import g58132.atlg3.boulderdash.util.Observer;
 import javafx.scene.paint.Color;
 
-public class ViewConsole {
+public class ViewConsole implements Observer {
     public void displayBoard(Element[][] board) {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
@@ -27,6 +28,18 @@ public class ViewConsole {
         }
 
     }
+    public void displayWinLevel(){
+        System.out.println("\u001B[32m" + "Good luck, you are to pass the level!!!!" + "\u001B[0m");
+    }
+    public void displayWinEndGame(){
+        System.out.println("\u001B[32m" + "End of the game, You are finish the all level!!!" + "\u001B[0m");
+    }
+    public void displayLose(){
+        System.out.println("\u001B[31m" +"You are lose the level" + "\u001B[0m");
+    }
+    public void  displayDiscontinued(){
+        System.out.println("\u001B[31m" +"You are give up" + "\u001B[0m");
+    }
 
     /**
      * Display end of game
@@ -42,5 +55,9 @@ public class ViewConsole {
         System.out.println("\033[4;37m" + "*****Welcome to the Boulder Dash game****" + "\u001B[0m");
     }
 
+    @Override
+    public void update() {
+
+    }
 }
 

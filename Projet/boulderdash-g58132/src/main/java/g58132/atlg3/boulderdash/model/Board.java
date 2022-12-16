@@ -92,7 +92,7 @@ public class Board {
         if (!containsBoard(pos)) {
             throw new IllegalArgumentException("La position n' est pas dans le board");
         }
-        return !(getElement(pos) instanceof Wall) && !(getElement(pos) instanceof Rock);
+        return !(getElement(pos) instanceof Wall) && !(getElement(pos) instanceof Rock );
     }
 
     /**
@@ -112,7 +112,7 @@ public class Board {
      *
      * @return the position of the player if he found otherwhise null
      */
-    private Position getPositionOfPlayer() {
+    public Position getPositionOfPlayer() {
 
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
@@ -150,49 +150,18 @@ public class Board {
         }
         return getElement(position) instanceof Rock && getElement(position2) == null;
     }
-    public List<Position> getAllRockOrDiamond(){
+    /**
+     * Get all diamonds and rocks of the level
+     *
+     * @return all diamond and rocks positions of a board
+     */
+    private List<Position> getAllRockOrDiamond(){
         List<Position> liste = new ArrayList();
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
                 if ((getElement(new Position(i, j)) instanceof Rock)||(getElement(new Position(i, j)) instanceof Diamond)) {
                     liste.add(new Position(i, j));
                 }
-            }
-        }
-        return liste;
-    }
-
-
-    /**
-     * Get all diamonds of the level
-     *
-     * @return all diamond positions of a board
-     */
-    private List<Position> getAllDiamond() {
-        List<Position> liste = new ArrayList();
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[0].length; j++) {
-                if (getElement(new Position(i, j)) instanceof Diamond) {
-                    liste.add(new Position(i, j));
-                }
-            }
-        }
-        return liste;
-    }
-
-    /**
-     * Get all rocks of the level
-     *
-     * @return all rocks positions of a board
-     */
-    private List<Position> getAllRock() {
-        List<Position> liste = new ArrayList();
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[0].length; j++) {
-                if (getElement(new Position(i, j)) instanceof Rock) {
-                    liste.add(new Position(i, j));
-                }
-
             }
         }
         return liste;
@@ -229,7 +198,6 @@ public class Board {
             throw new IllegalArgumentException("La position n' est pas dans le board");
         }
 
-
         // la logique dans Board ?
         if (getElement(newPos) instanceof Diamond) {
             getRockford().setNbDiamand(getRockford().getNbDiamand() + 1);
@@ -261,7 +229,6 @@ public class Board {
                 pos = pos.next(Direction.DOWN);
                 if (getElement(pos.next(Direction.DOWN)) instanceof Rockford) {
                     setElement(null, pos.next(Direction.DOWN));
-                    System.out.println("player manger");
 
                 }
             }
@@ -283,7 +250,6 @@ public class Board {
                     pos = pos.next(Direction.DOWN);
                 if (getElement(pos.next(Direction.DOWN)) instanceof Rockford) {
                     setElement(null, pos.next(Direction.DOWN));
-                    System.out.println("player manger");
 
                 }
                 }

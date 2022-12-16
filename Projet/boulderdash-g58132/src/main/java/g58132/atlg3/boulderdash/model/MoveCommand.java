@@ -43,12 +43,18 @@ public class MoveCommand implements Command {
 
     @Override
     public void execute() {
-        boulderDash.playMove(direction);
+
+         var board = boulderDash.getLevel().getLevel().getBoard();
+        board.movePlayer(direction);
+       boulderDash.createExit();
+        board.moveDiamondOrRock();
+        boulderDash.winOrLoselevel();
+        boulderDash.lose();
+        boulderDash.winAllLevel();
     }
 
     @Override
     public void unexecute() {
-
 
         for (int i = 0; i < element.length; i++) {
          for (int j = 0; j < element[0].length; j++) {
