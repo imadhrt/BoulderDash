@@ -7,7 +7,7 @@ public class Position {
 
     /**
      * Constructor of position
-     *
+     * <p>
      * Allows to initialize the row and column attributes to values.
      *
      * @param row    is a position on the board
@@ -20,7 +20,7 @@ public class Position {
 
     /**
      * Accessory of row
-     *
+     * <p>
      * Allows access to the value of the row attribute.
      *
      * @return the value of the row attribute
@@ -31,7 +31,7 @@ public class Position {
 
     /**
      * Accessory of column
-     *
+     * <p>
      * Allows access to the value of the column attribute.
      *
      * @return the value of the column attribute

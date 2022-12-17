@@ -69,7 +69,7 @@ public class LevelReader {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        try (var begin = new FileInputStream("src/main/resources/g58132/atlg3/boulderdash/level/level"+ numeroLevel)) {
+        try (var begin = new FileInputStream("src/main/resources/g58132/atlg3/boulderdash/level/level" + numeroLevel)) {
 
             var inputStreamReader = new InputStreamReader(begin);
             var bufferedReader = new BufferedReader(inputStreamReader);

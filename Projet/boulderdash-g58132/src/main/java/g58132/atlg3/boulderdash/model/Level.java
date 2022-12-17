@@ -10,7 +10,7 @@ public class Level {
 
     /**
      * Accessor of the number of the diamond to collect
-     *
+     * <p>
      * Allows access to the value of the number the diamond to collect attribute.
      *
      * @return a number the diamond to collect
@@ -31,7 +31,7 @@ public class Level {
 
     /**
      * Accessor of time
-     *
+     * <p>
      * Allows access to the value of the time attribute.
      *
      * @return the time maximum for one level

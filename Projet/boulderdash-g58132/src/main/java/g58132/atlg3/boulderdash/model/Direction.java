@@ -5,7 +5,6 @@ package g58132.atlg3.boulderdash.model;
  *
  * @author elhar
  */
-
 public enum Direction {
     UP(-1, 0), DOWN(1, 0), RIGHT(0, 1), LEFT(0, -1);
     private int deltaRow;
@@ -13,7 +12,7 @@ public enum Direction {
 
     /**
      * Constructor of Direction
-     *
+     * <p>
      * Allows to initialize the deltadeltaRow and deltadeltaColumn attributes to values.
      *
      * @param deltaRow    is a deltaRow in the board
@@ -28,7 +27,7 @@ public enum Direction {
 
     /**
      * Accessory of deltaRow
-     *
+     * <p>
      * Allows access to the value of the deltaRow attribute.
      *
      * @return the value of the deltaRow attribute
@@ -41,7 +40,7 @@ public enum Direction {
 
     /**
      * Accessory of deltaColumn
-     *
+     * <p>
      * Allows access to the value of the deltaColumn attribute.
      *
      * @return the value of the deltaColumn attribute

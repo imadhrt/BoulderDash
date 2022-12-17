@@ -92,7 +92,7 @@ public class Board {
         if (!containsBoard(pos)) {
             throw new IllegalArgumentException("La position n' est pas dans le board");
         }
-        return !(getElement(pos) instanceof Wall) && !(getElement(pos) instanceof Rock );
+        return !(getElement(pos) instanceof Wall) && !(getElement(pos) instanceof Rock);
     }
 
     /**
@@ -130,8 +130,8 @@ public class Board {
      * @return the RockFord from the board
      */
     public Rockford getRockford() {
-        if(getPositionOfPlayer()==null){
-           return null;
+        if (getPositionOfPlayer() == null) {
+            return null;
         }
         return (Rockford) getElement(getPositionOfPlayer());
     }
@@ -150,16 +150,17 @@ public class Board {
         }
         return getElement(position) instanceof Rock && getElement(position2) == null;
     }
+
     /**
      * Get all diamonds and rocks of the level
      *
      * @return all diamond and rocks positions of a board
      */
-    private List<Position> getAllRockOrDiamond(){
+    private List<Position> getAllRockOrDiamond() {
         List<Position> liste = new ArrayList();
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
-                if ((getElement(new Position(i, j)) instanceof Rock)||(getElement(new Position(i, j)) instanceof Diamond)) {
+                if ((getElement(new Position(i, j)) instanceof Rock) || (getElement(new Position(i, j)) instanceof Diamond)) {
                     liste.add(new Position(i, j));
                 }
             }
@@ -209,7 +210,7 @@ public class Board {
             setElement(getElement(oldpos), newPos);
             dropElement(oldpos);
 
-        } else if ((direction==Direction.RIGHT || direction==Direction.LEFT)&&isPushRock(newPos, newPos.next(direction))) {
+        } else if ((direction == Direction.RIGHT || direction == Direction.LEFT) && isPushRock(newPos, newPos.next(direction))) {
             setElement(getElement(newPos), newPos.next(direction));
             dropElement(newPos);
             setElement(getElement(oldpos), newPos);
@@ -220,7 +221,7 @@ public class Board {
     /**
      * Allows to fall the diamonds or rocks
      */
-    public void moveDiamondOrRock(){
+    public void moveDiamondOrRock() {
         for (int i = getAllRockOrDiamond().size() - 1; i >= 0; i--) {
             var pos = getAllRockOrDiamond().get(i);
             while (isCheckFallDown(pos)) {
@@ -238,8 +239,7 @@ public class Board {
                     setElement(getElement(pos), pos.next(Direction.RIGHT));
                     dropElement(pos);
                     pos = pos.next(Direction.RIGHT);
-                }
-                else if (getElement(pos.next(Direction.LEFT)) == null && getElement(pos.next(Direction.DOWN)) instanceof Rock && getElement(pos.next(Direction.LEFT).next(Direction.DOWN)) == null) {
+                } else if (getElement(pos.next(Direction.LEFT)) == null && getElement(pos.next(Direction.DOWN)) instanceof Rock && getElement(pos.next(Direction.LEFT).next(Direction.DOWN)) == null) {
                     setElement(getElement(pos), pos.next(Direction.LEFT));
                     dropElement(pos);
                     pos = pos.next(Direction.LEFT);
@@ -248,10 +248,10 @@ public class Board {
                     setElement(getElement(pos), pos.next(Direction.DOWN));
                     dropElement(pos);
                     pos = pos.next(Direction.DOWN);
-                if (getElement(pos.next(Direction.DOWN)) instanceof Rockford) {
-                    setElement(null, pos.next(Direction.DOWN));
+                    if (getElement(pos.next(Direction.DOWN)) instanceof Rockford) {
+                        setElement(null, pos.next(Direction.DOWN));
 
-                }
+                    }
                 }
             }
         }

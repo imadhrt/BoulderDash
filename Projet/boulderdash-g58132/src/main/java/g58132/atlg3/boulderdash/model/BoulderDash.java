@@ -26,11 +26,17 @@ public class BoulderDash implements Observable {
 
     }
 
+    /**
+     * Allows to return to the movement make
+     */
     public void undo() {
         commmandManager.undo();
         notifyObservers();
     }
 
+    /**
+     * Allows to return to the movement make cancel
+     */
     public void redo() {
         commmandManager.redo();
         notifyObservers();
@@ -41,13 +47,18 @@ public class BoulderDash implements Observable {
      */
 
     public void start(int numberLevel) {
-        if (numberLevel >= 0 && numberLevel <= 3) {
+        if (numberLevel >= 0 && numberLevel <= 9) {
             this.numberLevel = numberLevel;
             state = GameState.PLAY;
             level.browseLevel(this.numberLevel);
         }
     }
 
+    /**
+     * Allows the player to move in the board
+     *
+     * @param direction is a direction in which the player wants to move
+     */
     public void playMove(Direction direction) {
 
         Command command = new MoveCommand(direction, this);
@@ -59,7 +70,7 @@ public class BoulderDash implements Observable {
     /**
      * get a number of the player
      *
-     * @return
+     * @return the number that the player got
      */
 
     public int getNumberLevel() {
@@ -73,6 +84,9 @@ public class BoulderDash implements Observable {
         this.numberLevel++;
     }
 
+    /**
+     * Allows to create a door exit for that the player can go to the next level
+     */
     public void createExit() {
         var levelReader = level.getLevel();
 
@@ -84,7 +98,6 @@ public class BoulderDash implements Observable {
     }
 
     /**
-     * /**
      * Check the loose the level
      */
     public void lose() {
@@ -108,6 +121,9 @@ public class BoulderDash implements Observable {
         }
     }
 
+    /**
+     * Allows the game to be abandoned
+     */
     public void setdiscontinued() {
         state = GameState.EXIT;
     }
@@ -116,7 +132,7 @@ public class BoulderDash implements Observable {
      * Check the win all the level
      */
     public void winAllLevel() {
-        if (state == GameState.WIN && numberLevel == 3) {
+        if (state == GameState.WIN && numberLevel == 9) {
             state = GameState.ALLWIN;
         }
     }
@@ -141,8 +157,13 @@ public class BoulderDash implements Observable {
         return state;
     }
 
-    public int startRow() {
-        if(this.level.getLevel().getBoard().getRockford()!=null) {
+    /**
+     * Allows to see a part of the game
+     *
+     * @return a number for the beginning of the line
+     */
+    public int beginRow() {
+        if (this.level.getLevel().getBoard().getRockford() != null) {
             if (this.level.getLevel().getBoard().getPositionOfPlayer().getRow() < this.level.getLevel().getBoard().getBoard().length / 2 - 2) {
                 return 0;
             }
@@ -157,8 +178,14 @@ public class BoulderDash implements Observable {
         return 0;
     }
 
-    public int rows() {
-        if(this.level.getLevel().getBoard().getRockford()!=null) {
+    /**
+     * Allows to see a part of the game
+     *
+     * @return a number for the end of the line
+     */
+
+    public int endRow() {
+        if (this.level.getLevel().getBoard().getRockford() != null) {
             if (this.level.getLevel().getBoard().getPositionOfPlayer().getRow() < this.level.getLevel().getBoard().getBoard().length / 2 - 2) {
                 return this.level.getLevel().getBoard().getBoard().length / 2;
             }
@@ -172,8 +199,13 @@ public class BoulderDash implements Observable {
         return this.level.getLevel().getBoard().getBoard().length;
     }
 
-    public int startColumn() {
-        if(this.level.getLevel().getBoard().getRockford()!=null) {
+    /**
+     * Allows to see a part of the game
+     *
+     * @return a number for the beginning of the column
+     */
+    public int beginColumn() {
+        if (this.level.getLevel().getBoard().getRockford() != null) {
             if (this.level.getLevel().getBoard().getPositionOfPlayer().getColumn() < this.level.getLevel().getBoard().getBoard()[0].length / 2 - 2) {
                 return 0;
             }
@@ -183,11 +215,17 @@ public class BoulderDash implements Observable {
             }
         }
 
-        return  0;
+        return 0;
     }
 
-    public int columns() {
-        if(this.level.getLevel().getBoard().getRockford()!=null) {
+    /**
+     * Allows to see a part of the game
+     *
+     * @return a number for the end of the column
+     */
+
+    public int endColumn() {
+        if (this.level.getLevel().getBoard().getRockford() != null) {
 
             if (this.level.getLevel().getBoard().getPositionOfPlayer().getColumn() < this.level.getLevel().getBoard().getBoard()[0].length / 2 - 2) {
                 return this.level.getLevel().getBoard().getBoard()[0].length / 2;
