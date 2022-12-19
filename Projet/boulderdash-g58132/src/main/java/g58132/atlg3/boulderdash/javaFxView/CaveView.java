@@ -20,6 +20,13 @@ import javafx.stage.Stage;
 public class CaveView extends GridPane implements Observer {
     private BoulderDash boulderDash;
     private Stage stage;
+    private final Image wall=new Image("file:src/main/resources/g58132/atlg3/boulderdash/sprite/wall.png");
+    private final  Image ground=new Image("file:src/main/resources/g58132/atlg3/boulderdash/sprite/ground.png");
+    private final  Image diamond=new Image("file:src/main/resources/g58132/atlg3/boulderdash/sprite/diamond.png");
+    private final  Image pDown=new Image("file:src/main/resources/g58132/atlg3/boulderdash/sprite/pDown.png");
+    private final  Image rock=new Image("file:src/main/resources/g58132/atlg3/boulderdash/sprite/boulder.png");
+    private final  Image door=new Image("file:src/main/resources/g58132/atlg3/boulderdash/sprite/door.png");
+    private final  Image background=new Image("file:src/main/resources/g58132/atlg3/boulderdash/sprite/background.png");
 
     /**
      * Constructor of the CaveView
@@ -82,31 +89,31 @@ public class CaveView extends GridPane implements Observer {
             for (int j = boulderDash.beginColumn(); j < boulderDash.endColumn(); j++) {
                 if (board[i][j].getElement() instanceof Wall) {
                     image = new ImageView();
-                    image.setImage(new Image("file:src/main/resources/g58132/atlg3/boulderdash/sprite/wall.png"));
+                    image.setImage(wall);
                     this.add(image, j, i);
                 } else if (board[i][j].getElement() instanceof Soil) {
                     image = new ImageView();
-                    image.setImage(new Image("file:src/main/resources/g58132/atlg3/boulderdash/sprite/ground.png"));
+                    image.setImage(ground);
                     this.add(image, j, i);
                 } else if (board[i][j].getElement() instanceof Diamond) {
                     image = new ImageView();
-                    image.setImage(new Image("file:src/main/resources/g58132/atlg3/boulderdash/sprite/diamond.png"));
+                    image.setImage(diamond);
                     this.add(image, j, i);
                 } else if (board[i][j].getElement() instanceof Rockford) {
                     image = new ImageView();
-                    image.setImage(new Image("file:src/main/resources/g58132/atlg3/boulderdash/sprite/pDown.png"));
+                    image.setImage(pDown);
                     this.add(image, j, i);
                 } else if (board[i][j].getElement() instanceof Rock) {
                     image = new ImageView();
-                    image.setImage(new Image("file:src/main/resources/g58132/atlg3/boulderdash/sprite/boulder.png"));
+                    image.setImage(rock);
                     this.add(image, j, i);
                 } else if (board[i][j].getElement() instanceof Exit) {
                     image = new ImageView();
-                    image.setImage(new Image("file:src/main/resources/g58132/atlg3/boulderdash/sprite/door.png"));
+                    image.setImage(door);
                     this.add(image, j, i);
                 } else {
                     image = new ImageView();
-                    image.setImage(new Image("file:src/main/resources/g58132/atlg3/boulderdash/sprite/background.png"));
+                    image.setImage(background);
                     this.add(image, j, i);
                 }
                 image.setFitHeight(50);
@@ -194,6 +201,7 @@ public class CaveView extends GridPane implements Observer {
 
     @Override
     public void update() {
+
         displayBoard();
     }
 }
