@@ -20,6 +20,7 @@ import javafx.stage.Stage;
 public class CaveView extends GridPane implements Observer {
     private BoulderDash boulderDash;
     private Stage stage;
+    private Score score;
     private final Image wall=new Image("file:src/main/resources/g58132/atlg3/boulderdash/sprite/wall.png");
     private final  Image ground=new Image("file:src/main/resources/g58132/atlg3/boulderdash/sprite/ground.png");
     private final  Image diamond=new Image("file:src/main/resources/g58132/atlg3/boulderdash/sprite/diamond.png");
@@ -40,42 +41,13 @@ public class CaveView extends GridPane implements Observer {
         this.boulderDash = boulderDash;
         this.stage=stage;
         boulderDash.start(nbLevel);
+
+         score=new Score(boulderDash);
+        score.scoreDisplay();
         displayBoard();
     }
 
-    private void score() {
-     BorderPane borderPane = new BorderPane();
-        HBox hbox=new HBox();
-        Text text=new Text();
-        text.setText("Diamant à récupérer: "+boulderDash.getLevel().getLevel().getnumberDiamondcollect());
-        text.setFont(Font.font("Verdana", FontWeight.EXTRA_BOLD, 25));
-        text.setFill(Color.WHITE);
-        hbox.getChildren().add(text);
-        Text text2=new Text();
-        if(boulderDash.getLevel().getLevel().getBoard().getRockford()!=null) {
-            text2.setText("nombre de diamant récolté: " + boulderDash.getLevel().getLevel().getBoard().getRockford().getNbDiamand());
-        }
-        text2.setFont(Font.font("Verdana", FontWeight.EXTRA_BOLD, 25));
-        text2.setFill(Color.RED);
-        hbox.getChildren().add(text2);
-        hbox.setSpacing(20);
-        Text text3=new Text("Exit:Space");
-        text3.setFont(Font.font("Verdana", FontWeight.EXTRA_BOLD, 25));
-        text3.setFill(Color.ORANGE);
-        hbox.getChildren().add(text3);
 
-        Text text4=new Text("Undo:Z");
-        text4.setFont(Font.font("Verdana", FontWeight.EXTRA_BOLD, 25));
-        text4.setFill(Color.ORANGE);
-        hbox.getChildren().add(text4);
-        Text text5=new Text("Redo:Y");
-        text5.setFont(Font.font("Verdana", FontWeight.EXTRA_BOLD, 25));
-        text5.setFill(Color.ORANGE);
-        hbox.getChildren().add(text5);
-        borderPane.getChildren().add(hbox);
-
-        this.getChildren().add(borderPane);
-    }
 
     /**
      * Display the game of the board in javaFX
@@ -120,7 +92,7 @@ public class CaveView extends GridPane implements Observer {
                 image.setFitWidth(50);
             }
         }
-        score();
+        this.getChildren().add(score);
       this.setAlignment(Pos.CENTER);
     }
 
@@ -196,12 +168,13 @@ public class CaveView extends GridPane implements Observer {
             }
 
 
+
         });
     }
 
     @Override
     public void update() {
-
+        score.scoreDisplay();
         displayBoard();
     }
 }

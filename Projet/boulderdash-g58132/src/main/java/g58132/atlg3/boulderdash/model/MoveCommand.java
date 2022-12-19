@@ -7,6 +7,7 @@ public class MoveCommand implements Command {
     private Element[][] element;
     private Direction direction;
     private BoulderDash boulderDash;
+    private int nbDiamond;
 
     /**
      * Constructor of the moveCommand
@@ -18,6 +19,10 @@ public class MoveCommand implements Command {
         this.element = copyDefensiveBoard(boulderDash.getLevel().getLevel().getBoard().getBoard());
         this.direction = direction;
         this.boulderDash = boulderDash;
+      var rockFord=boulderDash.getLevel().getLevel().getBoard().getRockford();
+      if(rockFord!=null) {
+          nbDiamond =rockFord.getNbDiamand();
+      }
     }
 
     /**
@@ -71,6 +76,10 @@ public class MoveCommand implements Command {
             for (int j = 0; j < element[0].length; j++) {
                 boulderDash.getLevel().getLevel().getBoard().setElement(element[i][j].getElement(), new Position(i, j));
             }
+        }
+        var rockford=boulderDash.getLevel().getLevel().getBoard().getRockford();
+        if(rockford!=null){
+            rockford.setNbDiamand(nbDiamond);
         }
     }
 
